@@ -1,0 +1,203 @@
+/* ***********   RunsForm Start       ************** */
+
+.runs-form {
+  background-color: rgba(0, 0, 0, 0.2);
+  padding: 20px;
+  border-radius: 5px;
+  margin: 0 auto;
+  max-width: 500px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.form-title {
+  color: #fff;
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.form-group {
+  width: 100%;
+  margin-bottom: 15px;
+}
+
+.label {
+  color: #fff;
+  font-weight: bold;
+}
+
+.input-field {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+}
+
+.button-container {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.btn-submit,
+.btn-cancel {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.btn-submit {
+  background-color: #4caf50;
+  color: #fff;
+}
+
+.btn-submit:hover {
+  background-color: #45a049;
+}
+
+.btn-cancel {
+  background-color: #f44336;
+  color: #fff;
+}
+
+.btn-cancel:hover {
+  background-color: #d32f2f;
+}
+
+  
+    
+
+/* ***********   RunsForm End       ************** */
+
+
+
+/* ***********LoginForm Start**************** */
+.login-form-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 70vh;
+  background-color: #f4f4f4;
+}
+
+.login-form-title {
+  text-align: center;
+  margin-top: 50px;
+  color: #333;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 300px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #fff;
+}
+
+.login-form h2 {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.login-form input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.login-button {
+  background-color: #4caf50;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.login-button:hover {
+  background-color: #45a049;
+}
+
+/* ***********LoginForm End**************** */
+
+/* ***********CheckList start**************** */
+.checklist-container {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.checklist-question {
+  margin-bottom: 10px;
+}
+
+.checklist-result {
+  margin-top: 20px;
+}
+
+.checklist-result li {
+  color: #fff;
+  padding: 5px;
+  margin-bottom: 5px;
+  list-style-type: none;
+}
+
+.checklist-result .pass {
+  background-color: #2ecc71;
+}
+
+.checklist-result .fail {
+  background-color: #e74c3c;
+}
+
+
+.checklist-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+.checklist-table th,
+.checklist-table td {
+  border: 1px solid #ccc;
+  padding: 8px;
+  text-align: left;
+}
+
+.checklist-table th {
+  background-color: #f2f2f2;
+}
+
+.checklist-result table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.checklist-result th,
+.checklist-result td {
+  border: 1px solid #ccc;
+  padding: 8px;
+  text-align: left;
+}
+
+.checklist-result th {
+  background-color: #f2f2f2;
+}
+
+.checklist-result .pass {
+  background-color: #c5e1a5;
+}
+
+.checklist-result .fail {
+  background-color: #ef9a9a;
+}
+
+/* ***********CheckList end**************** */

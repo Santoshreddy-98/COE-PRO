@@ -1,0 +1,93 @@
+import React, { useState } from 'react';
+import axios from 'axios';
+import '../components/DA.css';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+const RunsForm = ({ addRun }) => {
+  const [designName, setDesignName] = useState('');
+  const [runName, setRunName] = useState('');
+  const [directory, setDirectory] = useState('');
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      await axios.post('http://localhost:5000/api/CreateAddRun', {
+        designName,
+        runName,
+        directory,
+      });
+      addRun({ designName, runName, directory });
+      setDesignName('');
+      setRunName('');
+      setDirectory('');
+      toast.success('Run created successfully');
+    } catch (error) {
+      console.error('Failed to create run:', error);
+      if (error.response && error.response.data && error.response.data.error) {
+        toast.error(error.response.data.error);
+      } else {
+        toast.error('Failed to create run');
+      }
+    }
+  };
+
+  const handleCancel = () => {
+    setDesignName('');
+    setRunName('');
+    setDirectory('');
+  };
+
+  return (
+    <div className="runs-form">
+      <h2 className="form-title">Create Run</h2>
+      <form onSubmit={handleSubmit}>
+        <div className="form-group">
+          <label htmlFor="designName">Design Name</label>
+          <div className="input-container">
+            <input
+              type="text"
+              id="designName"
+              value={designName}
+              onChange={(e) => setDesignName(e.target.value)}
+              className="input-field"
+            />
+          </div>
+        </div>
+
+        <div className="form-group">
+          <label htmlFor="runName">Run Name</label>
+          <input
+            type="text"
+            id="runName"
+            required
+            value={runName}
+            onChange={(e) => setRunName(e.target.value)}
+            className="input-field"
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="directory">Run Directory</label>
+          <input
+            type="text"
+            id="directory"
+            required
+            value={directory}
+            onChange={(e) => setDirectory(e.target.value)}
+            className="input-field"
+          />
+        </div>
+        <div className="button-container">
+          <button type="submit" className="btn-submit">
+            Submit
+          </button>
+          <button type="button" className="btn-cancel" onClick={handleCancel}>
+            Cancel
+          </button>
+        </div>
+      </form>
+    </div>
+  );
+};
+
+export default RunsForm;
