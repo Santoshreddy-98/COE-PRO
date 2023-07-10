@@ -1,10 +1,9 @@
 import React from "react";
 import { LandingPage } from "./LandingPage";
 import { Sidebar } from "./Sidebar";
-
 import '../AppDD.css'
 
-export const MainPage = () => {
+export const SubHome = () => {
   return (
     <div className="app-container">
       <div className="content">
