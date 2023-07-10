@@ -2,13 +2,17 @@ import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Login from './DA/components/Login';
 import AfterLogin from './DA/components/AfterLogin';
+import AddRunDetails from './DA/components/AddRunDetails';
+import { SubHome } from './DD/components/SubHome';
 
 const App = () => {
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Login />} />
-        <Route path="/dashboard" element={<AfterLogin />} />
+        {/* <Route path="/dashboard" element={<AfterLogin />} /> */}
+        <Route path="/addrun" element={<AddRunDetails />} />
+        <Route path="/landing" element={<SubHome />} />
       </Routes>
     </BrowserRouter>
   );
