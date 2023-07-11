@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import AddRunDetails from './DA/components/AddRunDetails';
 
 import { TableComponents } from './DD/components/TableComponents';
+import CheckList from './DA/components/CheckList'
 
 const App = () => {
   return (
@@ -11,6 +12,7 @@ const App = () => {
 
         <Route path="/" element={<AddRunDetails />} />
         <Route path="/landing" element={<TableComponents />} />
+        <Route path="/checklist" element={<CheckList />} />
       </Routes>
     </BrowserRouter>
   );
