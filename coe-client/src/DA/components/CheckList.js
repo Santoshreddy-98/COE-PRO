@@ -56,7 +56,7 @@ function ChecklistPage() {
             Are logical and physical libraries available for all the standard cells and macros?
           </label>
         ),
-        status: answers.question1 ? 'Pass' : 'Fail',
+        status: answers.question1 ? 'Yes' : 'No',
       },
       {
         question: (
@@ -70,7 +70,7 @@ function ChecklistPage() {
             Are latest version of libraries available?
           </label>
         ),
-        status: answers.question2 ? 'Pass' : 'Fail',
+        status: answers.question2 ? 'Yes' : 'No',
       },
 
       {
@@ -85,7 +85,7 @@ function ChecklistPage() {
             Are all the std cells and macros in the library DRC, LVS clean?
           </label>
         ),
-        status: answers.question3 ? 'Pass' : 'Fail',
+        status: answers.question3 ? 'Yes' : 'No',
       },
       {
         question: (
@@ -99,7 +99,7 @@ function ChecklistPage() {
             Are Decap cell available?
           </label>
         ),
-        status: answers.question4 ? 'Pass' : 'Fail',
+        status: answers.question4 ? 'Yes' : 'No',
       },
       {
         question: (
@@ -113,7 +113,7 @@ function ChecklistPage() {
             Are Tie high/low cells available?
           </label>
         ),
-        status: answers.question5 ? 'Pass' : 'Fail',
+        status: answers.question5 ? 'Yes' : 'No',
       },
       {
         question: (
@@ -127,7 +127,7 @@ function ChecklistPage() {
             Are all tap cells and pitch available?
           </label>
         ),
-        status: answers.question6 ? 'Pass' : 'Fail',
+        status: answers.question6 ? 'Yes' : 'No',
       },
       {
         question: (
@@ -141,7 +141,7 @@ function ChecklistPage() {
             Are endcap & corner cells available?
           </label>
         ),
-        status: answers.question7 ? 'Pass' : 'Fail',
+        status: answers.question7 ? 'Yes' : 'No',
       },
       {
         question: (
@@ -155,7 +155,7 @@ function ChecklistPage() {
             Are power switches available?
           </label>
         ),
-        status: answers.question8 ? 'Pass' : 'Fail',
+        status: answers.question8 ? 'Yes' : 'No',
       },
       {
         question: (
@@ -169,7 +169,7 @@ function ChecklistPage() {
             Are all the required and PVT corners for implementation available in the library?
           </label>
         ),
-        status: answers.question9 ? 'Pass' : 'Fail',
+        status: answers.question9 ? 'Yes' : 'No',
       },
       {
         question: (
@@ -183,7 +183,7 @@ function ChecklistPage() {
             Are multi VT cells like HVT,LVT, and SVT available?
           </label>
         ),
-        status: answers.question10 ? 'Pass' : 'Fail',
+        status: answers.question10 ? 'Yes' : 'No',
       },
       // Add more questions and their statuses here
     ],
@@ -200,7 +200,7 @@ function ChecklistPage() {
         Header: 'Status',
         accessor: 'status',
         Cell: ({ value }) => (
-          <span style={{ color: value === 'Pass' ? 'green' : 'red' }}>
+          <span style={{ color: value === 'Yes' ? 'green' : 'red' }}>
             {value}
           </span>
         ),
