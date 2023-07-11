@@ -20,7 +20,7 @@ const Login = () => {
     e.preventDefault();
 
     try {
-      const response = await axios.post('http://localhost:5000/api/login', { username, password });
+      const response = await axios.post('http://172.16.90.3:5000/api/login', { username, password });
       console.log(response.data); // Handle the response data as needed
 
       // Redirect to the desired page after successful login
