@@ -12,23 +12,23 @@ const DirForm = () => {
   const [libDirectory, setLibDirectory] = useState('');
   const [techDirectory, setTechDirectory] = useState('');
   const [validationResults, setValidationResults] = useState([]);
-
   const navigate = useNavigate();
-  const handleSubmit = () => {
-    if (
-      validationResults.every((result) => result.isValid) &&
-      defDirectory &&
-      lefDirectory &&
-      libDirectory &&
-      techDirectory
-    ) {
-      
-      navigate('/InputVariables');
-    } else {
-      
-      console.log('Please make sure all paths are valid before proceeding');
-    }
+  const navigateToInputVariables = () => {
+    navigate('/InputVariables', { state: { formData: { defDirectory, lefDirectory, libDirectory, techDirectory } } });
   };
+  const handleSubmit = () => {
+  if (
+    validationResults.every((result) => result.isValid) &&
+    defDirectory &&
+    lefDirectory &&
+    libDirectory &&
+    techDirectory
+  ) {
+    navigateToInputVariables();
+  } else {
+    console.log('Please make sure all paths are valid before proceeding');
+  }
+};
   
 
   const handleValidation = async () => {
@@ -85,11 +85,11 @@ const DirForm = () => {
 
   return (
     <Card className="col-7 mt-3" style={{ margin: 'auto' }}>
-      <Card.Header>Design Directory inputs</Card.Header>
+      <Card.Header className='display-6'>Design Directory inputs</Card.Header>
       <Card.Body>
         <Form>
           <Form.Group>
-            <Form.Label>DEF File Directory:</Form.Label>
+            <Form.Label className='.h5: 1.25rem;'>DEF File Directory:</Form.Label>
             <div className="input-group">
               <Form.Control
                 type="text"
