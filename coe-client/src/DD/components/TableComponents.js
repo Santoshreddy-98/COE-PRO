@@ -1,25 +1,37 @@
 import React, { useState, useEffect } from "react";
+
 import { useTable } from "react-table";
+
 import ReactPaginate from "react-paginate";
+
 import axios from "axios";
+
 import columns from "./Columns";
+
 import "../AppDD.css";
+
 import { FaAngleDoubleRight } from "react-icons/fa";
 
 export const TableComponents = () => {
   const [colVal, setColVal] = useState([]);
+
   const maxRowsPerPage = 10;
+
   const [currentPage, setCurrentPage] = useState(0);
+
   const startIndex = currentPage * maxRowsPerPage;
+
   const slicedData = colVal.slice(startIndex, startIndex + maxRowsPerPage);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const res = await axios.get("http://localhost:5000/api/landingrun");
+
         setColVal(res.data);
       } catch (error) {
         console.error(error);
+
         // Handle errors
       }
     };
@@ -36,8 +48,8 @@ export const TableComponents = () => {
 
   return (
     <React.Fragment>
-      <div className="container">
-        <table {...getTableProps()} className="table">
+      <div className="TableContainer">
+        <table {...getTableProps()} className="TableBody">
           <thead>
             {headerGroups.map((headerGroup) => (
               <tr {...headerGroup.getHeaderGroupProps()}>
@@ -49,21 +61,23 @@ export const TableComponents = () => {
               </tr>
             ))}
           </thead>
+
           <tbody {...getTableBodyProps()}>
             {rows.map((row) => {
               prepareRow(row);
+
               return (
                 <tr {...row.getRowProps()}>
                   {row.cells.map((cell) => (
                     <td {...cell.getCellProps()}>
                       {cell.column.Header === "FM" && cell.value ? (
-                        <button className="table-custom-button">View</button>
+                        <button className="TableCustomButton">View</button>
                       ) : cell.column.Header === "FM" && !cell.value ? (
-                        <button className="table-custom-button">Set_up</button>
+                        <button className="TableCustomButton">Set_up</button>
                       ) : cell.column.Header === "DD" ||
                         cell.column.Header === "DA" ? (
                         <button
-                          className={`table-custom-button ${
+                          className={`TableCustomButton ${
                             cell.value ? "active" : "disabled"
                           }`}
                           disabled={!cell.value}
@@ -82,7 +96,7 @@ export const TableComponents = () => {
         </table>
       </div>
 
-      <div className="pagination-container">
+      <div className="paginationContainer">
         <ReactPaginate
           previousLabel={"Previous"}
           nextLabel={"Next"}
@@ -92,7 +106,7 @@ export const TableComponents = () => {
           marginPagesDisplayed={2}
           pageRangeDisplayed={5}
           onPageChange={handlePageChange}
-          containerClassName={"pagination"}
+          containerClassName={"TablePagination"}
           activeClassName={"active"}
         />
       </div>
