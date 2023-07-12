@@ -84,7 +84,9 @@ const DirForm = () => {
 
   return (
     <Card className="col-7 mt-3" style={{ margin: 'auto' }}>
-      <Card.Header className='display-6'>Design Directory inputs</Card.Header>
+      <Card.Header className='display-6'
+      style={{background:"#DDDDDD",
+      }}>Design Directory inputs</Card.Header>
       <Card.Body>
         <Form>
           <Form.Group>
