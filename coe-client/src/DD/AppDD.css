@@ -2,53 +2,36 @@
 
 * {
   margin: 0;
-
   padding: 0;
-
   box-sizing: border-box;
-  /* overflow: hidden; */
+
 }
 
 /* Table CSS */
-
-.TableContainer {
+.container {
   position: relative;
-
   margin: 80px 70px 70px;
-
   box-shadow: 0px 35px 50px rgba(0, 0, 0, 0.2);
-
   font-family: "Josefin Sans", sans-serif;
 }
 
-.TableBody {
+table {
   border-radius: 5px;
-
   font-size: 12px;
-
   font-weight: normal;
-
   border: none;
-
   border-collapse: collapse;
-
   width: 100%;
-
   max-width: 100%;
-
   white-space: nowrap;
-
   background-color: white;
-
   border: 1px solid #1a2929;
 }
 
 td,
 th {
   text-align: center;
-
   padding: 8px;
-
   border-right: 1px solid #1a2929;
 }
 
@@ -58,7 +41,6 @@ td {
 
 thead th {
   color: #ffffff;
-
   background: #1a2929;
 }
 
@@ -66,94 +48,69 @@ tr:nth-child(even) {
   background: #9edfd3;
 }
 
-.TableCustomButton {
+.table-custom-button {
   background-color: #4caf50;
-
   color: white;
-
   padding: 8px 16px;
-
   border: none;
-
   cursor: pointer;
-
   border-radius: 4px;
-
   font-size: 14px;
-
   display: inline-flex;
 }
 
-.TableCustomButton:hover {
+.table-custom-button:hover {
   background-color: #45a049;
 }
 
 /* Pagination CSS */
-
-.paginationContainer {
+.pagination-container {
   /* display: flex;
-
   justify-content: center;
-
   align-items: center; */
-
   padding: 20px;
-
   position: sticky;
-
   bottom: 0;
 }
 
-.TablePagination {
+.pagination {
   display: flex;
-
   justify-content: center;
-
   margin-top: 20px;
 }
 
-.TablePagination a,
-.TablePagination .active a {
+.pagination a,
+.pagination .active a {
   color: #000;
-
   padding: 8px 16px;
-
   text-decoration: none;
-
   border: 1px solid #ccc;
-
   margin: 0 4px;
-
   cursor: pointer;
 }
-
-.TablePagination li {
+.pagination li {
   list-style: none;
 }
 
-.TablePagination .active a {
+.pagination .active a {
   background: #9edfd3;
 }
 
-.TablePagination a:hover:not(.active) {
+.pagination a:hover:not(.active) {
   background-color: #f2f2f2;
 }
 
-.TableCustomButton.disabled {
+.table-custom-button.disabled {
   opacity: 0.5;
-
   pointer-events: none;
-
   cursor: not-allowed;
 }
 
 @media (max-width: 767px) {
-  .TableBody {
+  table {
     display: block;
-
     width: 100%;
   }
-
   thead,
   tbody,
   thead th {
@@ -170,36 +127,25 @@ tr:nth-child(even) {
 
   tbody {
     width: auto;
-
     position: relative;
-
     overflow-x: auto;
   }
 
   td,
   th {
     padding: 20px 0.625em 0.625em 0.625em;
-
     height: 60px;
-
     vertical-align: middle;
-
     box-sizing: border-box;
-
     overflow-x: hidden;
-
     overflow-y: auto;
-
     width: 120px;
-
     font-size: 13px;
-
     text-overflow: ellipsis;
   }
 
   thead th {
     text-align: left;
-
     border-bottom: 1px solid #f7f7f9;
   }
 
@@ -227,7 +173,6 @@ tr:nth-child(even) {
 
   tbody td {
     display: block;
-
     text-align: center;
   }
 }

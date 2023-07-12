@@ -5,6 +5,7 @@ import 'bootstrap-icons/font/bootstrap-icons.css';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+
 const DirForm = () => {
   const [defDirectory, setDefDirectory] = useState('');
   const [lefDirectory, setLefDirectory] = useState('');
@@ -13,7 +14,7 @@ const DirForm = () => {
   const [validationResults, setValidationResults] = useState([]);
   const navigate = useNavigate();
   const navigateToInputVariables = () => {
-    navigate('/InputVariables', { state: { formData: { defDirectory, lefDirectory, libDirectory, techDirectory }}});
+    navigate('/InputVariables', { state: { formData: { defDirectory, lefDirectory, libDirectory, techDirectory } } });
   };
   const handleSubmit = () => {
   if (
@@ -84,9 +85,7 @@ const DirForm = () => {
 
   return (
     <Card className="col-7 mt-3" style={{ margin: 'auto' }}>
-      <Card.Header className='display-6'
-      style={{background:"#DDDDDD",
-      }}>Design Directory inputs</Card.Header>
+      <Card.Header className='display-6'>Design Directory inputs</Card.Header>
       <Card.Body>
         <Form>
           <Form.Group>

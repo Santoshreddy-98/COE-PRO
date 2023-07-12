@@ -14,7 +14,7 @@ const AddRunDetails = () => {
 
   return (
     <div>
-    <h1 className='text-center'>Add Run Details</h1>
+    <h1>Add Run Details</h1>
     <RunsForm addRun={addRun} />
   </div>
   
