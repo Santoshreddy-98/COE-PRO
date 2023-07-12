@@ -1,9 +1,10 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import AddRunDetails from './DA/components/AddRunDetails';
-
 import { TableComponents } from './DD/components/TableComponents';
 import CheckList from './DA/components/CheckList'
+import DirForm from './FM/components/DirForm';
+import Login from './DA/components/Login';
 
 const App = () => {
   return (
@@ -13,6 +14,8 @@ const App = () => {
         <Route path="/" element={<AddRunDetails />} />
         <Route path="/landing" element={<TableComponents />} />
         <Route path="/checklist" element={<CheckList />} />
+        <Route path='/dirform' element={<DirForm />} />
+        <Route path='/login' element={<Login />} />
       </Routes>
     </BrowserRouter>
   );

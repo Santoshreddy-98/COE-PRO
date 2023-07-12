@@ -1,49 +1,54 @@
-import React, { useState } from 'react';
-import axios from 'axios';
-import '../components/DA.css';
-import { toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-
+import React, { useState } from "react";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import "../components/DA.css";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 const RunsForm = ({ addRun }) => {
-  const [designName, setDesignName] = useState('');
-  const [runName, setRunName] = useState('');
-  const [directory, setDirectory] = useState('');
-
+  const navigate = useNavigate();
+  const [designName, setDesignName] = useState("");
+  const [runName, setRunName] = useState("");
+  const [directory, setDirectory] = useState("");
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post('http://localhost:5000/api/CreateAddRun', {
+      const res = await axios.post("http://localhost:5000/api/CreateAddRun", {
         designName,
         runName,
         directory,
       });
+      // ******* passing data through navigater **********
+      navigate("/landing");
       addRun({ designName, runName, directory });
-      setDesignName('');
-      setRunName('');
-      setDirectory('');
-      toast.success('Run created successfully');
+      setDesignName("");
+      setRunName("");
+      setDirectory("");
+      toast.success("Run created successfully");
     } catch (error) {
-      console.error('Failed to create run:', error);
+      console.error("Failed to create run:", error);
       if (error.response && error.response.data && error.response.data.error) {
         toast.error(error.response.data.error);
       } else {
-        toast.error('Failed to create run');
+        toast.error("Failed to create run");
       }
     }
   };
-
   const handleCancel = () => {
-    setDesignName('');
-    setRunName('');
-    setDirectory('');
+    setDesignName("");
+
+    setRunName("");
+
+    setDirectory("");
   };
 
   return (
     <div className="runs-form">
       <h2 className="form-title">Create Run</h2>
+
       <form onSubmit={handleSubmit}>
         <div className="form-group">
-          <label htmlFor="designName">Design Name</label>
+          <label htmlFor="designName" className="inputTitle" >Design Name</label>
+
           <div className="input-container">
             <input
               type="text"
@@ -54,9 +59,9 @@ const RunsForm = ({ addRun }) => {
             />
           </div>
         </div>
-
         <div className="form-group">
-          <label htmlFor="runName">Run Name</label>
+          <label htmlFor="runName" className="inputTitle">Run Name</label>
+
           <input
             type="text"
             id="runName"
@@ -67,7 +72,7 @@ const RunsForm = ({ addRun }) => {
           />
         </div>
         <div className="form-group">
-          <label htmlFor="directory">Run Directory</label>
+          <label htmlFor="directory" className="inputTitle">Run Directory</label>
           <input
             type="text"
             id="directory"
