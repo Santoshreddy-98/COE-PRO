@@ -40,7 +40,7 @@ const MyForm = () => {
         design,
         numCpu,
         powerOpt,
-        genEff
+        genEff,
       });
     } catch (err) {
       toast.error("Error adding variables");
@@ -71,29 +71,45 @@ const MyForm = () => {
   };
 
   return (
-    <Card className="col-7 mt-3" style={{ margin: "auto",background:"#dbd7d7" }}>
+    <Card
+      className="col-7 mt-3"
+      style={{ margin: "auto", background: "#dbd7d7" }}
+    >
       <CardHeader>
         <Card.Title className="display-6">Design Variables</Card.Title>
       </CardHeader>
-      <Card.Body style={{ overflowY: "auto", maxHeight: "calc(100vh - 300px)" }}>
-      <div style={{ display: "flex", justifyContent: "flex-end"}}>
-    <Button
-      style={{background:"#649FCC",border:"none"}}
-      onClick={() => {
-        // Handle the click event for the home button
-        // Add the necessary logic to redirect the user to the home page
-        console.log("Home button clicked");
-      }}
-    >
-      Home
-    </Button>
-  </div>
-  <div style={{ display: "flex", justifyContent: "flex-end"}}>
-  <Link to="/view-data">
-        <button
-        style={{background:"#2B4D9D",border:"none",borderRadius:"10px",marginTop:"2px",height:"40px",color:"white"}}>View Design Data</button>
-      </Link>
-  </div>
+      <Card.Body
+        style={{ overflowY: "auto", maxHeight: "calc(100vh - 300px)" }}
+      >
+        <div style={{ display: "flex", justifyContent: "flex-end" }}>
+          <Button
+            style={{ background: "#649FCC", border: "none" }}
+            onClick={() => {
+              // Handle the click event for the home button
+              // Add the necessary logic to redirect the user to the home page
+              console.log("Home button clicked");
+            }}
+          >
+            Home
+          </Button>
+        </div>
+        <div style={{ display: "flex", justifyContent: "flex-end" }}>
+          <Link to="/view-data">
+            <button
+              style={{
+                background: "#2B4D9D",
+                border: "none",
+                borderRadius: "10px",
+                marginTop: "2px",
+                height: "40px",
+                width:"150px",
+                color: "white",
+              }}
+            >
+              View Design Data
+            </button>
+          </Link>
+        </div>
         <Form onSubmit={handleSubmit}>
           <Form.Group controlId="design">
             <Form.Label>Design:</Form.Label>
@@ -156,7 +172,12 @@ const MyForm = () => {
       {submittedData || location.state?.formData ? (
         <div className="mt-3 table-responsive">
           <h5>Submitted Data:</h5>
-          <Table striped bordered hover style={{ overflowY: "auto", maxHeight: "calc(100vh - 400px)" }} >
+          <Table
+            striped
+            bordered
+            hover
+            style={{ overflowY: "auto", maxHeight: "calc(100vh - 400px)" }}
+          >
             <thead>
               <tr>
                 <th>Field</th>
@@ -184,19 +205,28 @@ const MyForm = () => {
               {/* Display InputVariables data */}
               <tr>
                 <td>Design:</td>
-                <td>{submittedData?.design || location.state?.formData?.design}</td>
+                <td>
+                  {submittedData?.design || location.state?.formData?.design}
+                </td>
               </tr>
               <tr>
                 <td>Number of CPUs:</td>
-                <td>{submittedData?.numCpu || location.state?.formData?.numCpu}</td>
+                <td>
+                  {submittedData?.numCpu || location.state?.formData?.numCpu}
+                </td>
               </tr>
               <tr>
                 <td>Power Optimization:</td>
-                <td>{submittedData?.powerOpt || location.state?.formData?.powerOpt}</td>
+                <td>
+                  {submittedData?.powerOpt ||
+                    location.state?.formData?.powerOpt}
+                </td>
               </tr>
               <tr>
                 <td>Generation Efficiency:</td>
-                <td>{submittedData?.genEff || location.state?.formData?.genEff}</td>
+                <td>
+                  {submittedData?.genEff || location.state?.formData?.genEff}
+                </td>
               </tr>
             </tbody>
           </Table>
@@ -208,7 +238,8 @@ const MyForm = () => {
           <Modal.Title>Form Resubmission Confirmation</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          You have already submitted the form. Are you sure you want to resubmit?
+          You have already submitted the form. Are you sure you want to
+          resubmit?
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleConfirmationModalClose}>

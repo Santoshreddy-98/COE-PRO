@@ -1,21 +1,26 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Login from './DA/components/Login';
+import InputVariables from "./FM/components/InputVariables"
+import DirForm from "./FM/components/DirForm"
+import View from "./FM/components/View"
 import AddRunDetails from './DA/components/AddRunDetails';
 import { TableComponents } from './DD/components/TableComponents';
 import CheckList from './DA/components/CheckList'
-import DirForm from './FM/components/DirForm';
-import Login from './DA/components/Login';
-
+import { ToastContainer } from "react-toastify";
 const App = () => {
   return (
     <BrowserRouter>
+     <ToastContainer />
       <Routes>
 
         <Route path="/" element={<AddRunDetails />} />
         <Route path="/landing" element={<TableComponents />} />
-        <Route path="/checklist" element={<CheckList />} />
+         <Route path="/checklist" element={<CheckList />} />
         <Route path='/dirform' element={<DirForm />} />
         <Route path='/login' element={<Login />} />
+        <Route path="/InputVariables" element={<InputVariables />} />
+        <Route path="/view-data" element={<View/>}/>
       </Routes>
     </BrowserRouter>
   );
