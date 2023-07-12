@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 // const Course = require('../Models/Courses');
-const AddrunModel = require("../../modal/AddRunDetails");
+const AddrunModel = require("../../modal/DA_model/AddRunDetails");
 
 const getLandingRun = async (req, res) => {
   try {

@@ -2,36 +2,52 @@
 
 * {
   margin: 0;
-  padding: 0;
-  box-sizing: border-box;
 
+  padding: 0;
+
+  box-sizing: border-box;
 }
 
 /* Table CSS */
-.container {
+
+.TableContainer {
   position: relative;
-  margin: 80px 70px 70px;
+
+  margin: 50px 70px 70px;
+
   box-shadow: 0px 35px 50px rgba(0, 0, 0, 0.2);
+
   font-family: "Josefin Sans", sans-serif;
 }
 
-table {
+.TableBody {
   border-radius: 5px;
+
   font-size: 12px;
+
   font-weight: normal;
+
   border: none;
+
   border-collapse: collapse;
+
   width: 100%;
+
   max-width: 100%;
+
   white-space: nowrap;
+
   background-color: white;
+
   border: 1px solid #1a2929;
 }
 
 td,
 th {
   text-align: center;
+
   padding: 8px;
+
   border-right: 1px solid #1a2929;
 }
 
@@ -41,6 +57,7 @@ td {
 
 thead th {
   color: #ffffff;
+
   background: #1a2929;
 }
 
@@ -48,69 +65,78 @@ tr:nth-child(even) {
   background: #9edfd3;
 }
 
-.table-custom-button {
+.TableCustomButton {
   background-color: #4caf50;
+
   color: white;
+
   padding: 8px 16px;
+
   border: none;
+
   cursor: pointer;
+
   border-radius: 4px;
+
   font-size: 14px;
+
   display: inline-flex;
 }
 
-.table-custom-button:hover {
+.TableCustomButton:hover {
   background-color: #45a049;
 }
 
-/* Pagination CSS */
-.pagination-container {
-  /* display: flex;
-  justify-content: center;
-  align-items: center; */
-  padding: 20px;
-  position: sticky;
-  bottom: 0;
-}
-
-.pagination {
+.TablePagination {
   display: flex;
+
   justify-content: center;
+
   margin-top: 20px;
 }
 
-.pagination a,
-.pagination .active a {
+.TablePagination a,
+.TablePagination .active a {
   color: #000;
+
   padding: 8px 16px;
+
   text-decoration: none;
+
   border: 1px solid #ccc;
+
   margin: 0 4px;
+
   cursor: pointer;
 }
-.pagination li {
+
+.TablePagination li {
   list-style: none;
 }
 
-.pagination .active a {
+.TablePagination .active a {
   background: #9edfd3;
 }
 
-.pagination a:hover:not(.active) {
+.TablePagination a:hover:not(.active) {
   background-color: #f2f2f2;
 }
 
-.table-custom-button.disabled {
+.TableCustomButton.disabled {
   opacity: 0.5;
+
   pointer-events: none;
+
   cursor: not-allowed;
 }
 
 @media (max-width: 767px) {
-  table {
+  .TableBody {
     display: block;
+
     width: 100%;
   }
+
   thead,
   tbody,
   thead th {
@@ -127,25 +153,36 @@ tr:nth-child(even) {
 
   tbody {
     width: auto;
+
     position: relative;
+
     overflow-x: auto;
   }
 
   td,
   th {
     padding: 20px 0.625em 0.625em 0.625em;
+
     height: 60px;
+
     vertical-align: middle;
+
     box-sizing: border-box;
+
     overflow-x: hidden;
+
     overflow-y: auto;
+
     width: 120px;
+
     font-size: 13px;
+
     text-overflow: ellipsis;
   }
 
   thead th {
     text-align: left;
+
     border-bottom: 1px solid #f7f7f9;
   }
 
@@ -163,16 +200,19 @@ tr:nth-child(even) {
 
   tr td:nth-child(odd) {
     background: #f8f8f8;
+
     border-right: 1px solid #1a2929;
   }
 
   tr td:nth-child(even) {
     background-color: #9edfd3;
+
     border-right: 1px solid #1a2929;
   }
 
   tbody td {
     display: block;
+
     text-align: center;
   }
 }
