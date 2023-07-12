@@ -5,7 +5,6 @@ import 'bootstrap-icons/font/bootstrap-icons.css';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
 const DirForm = () => {
   const [defDirectory, setDefDirectory] = useState('');
   const [lefDirectory, setLefDirectory] = useState('');
@@ -14,7 +13,7 @@ const DirForm = () => {
   const [validationResults, setValidationResults] = useState([]);
   const navigate = useNavigate();
   const navigateToInputVariables = () => {
-    navigate('/InputVariables', { state: { formData: { defDirectory, lefDirectory, libDirectory, techDirectory } } });
+    navigate('/InputVariables', { state: { formData: { defDirectory, lefDirectory, libDirectory, techDirectory }}});
   };
   const handleSubmit = () => {
   if (

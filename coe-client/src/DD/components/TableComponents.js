@@ -43,6 +43,24 @@ export const TableComponents = () => {
     setCurrentPage(selected);
   };
 
+  const handleSetUpButtonClick = (row) => {
+    const dirFormUrl = "/dirform"; // Replace with the actual URL of the dirform page
+
+    // Pass any necessary data to the dirform page through query parameters or state
+
+    const dataToPass = {
+      // Define the data to pass here
+    };
+
+    // Construct the URL with query parameters or state data
+
+    const urlWithParams = `${dirFormUrl}?param1=value1&param2=value2`; // Replace with the actual query parameters
+
+    // Navigate to the dirform page
+
+    window.location.href = urlWithParams;
+  };
+
   const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } =
     useTable({ columns, data: slicedData });
 
@@ -73,7 +91,12 @@ export const TableComponents = () => {
                       {cell.column.Header === "FM" && cell.value ? (
                         <button className="TableCustomButton">View</button>
                       ) : cell.column.Header === "FM" && !cell.value ? (
-                        <button className="TableCustomButton">Set_up</button>
+                        <button
+                          className="TableCustomButton"
+                          onClick={() => handleSetUpButtonClick(row)}
+                        >
+                          Set_up
+                        </button>
                       ) : cell.column.Header === "DD" ||
                         cell.column.Header === "DA" ? (
                         <button
