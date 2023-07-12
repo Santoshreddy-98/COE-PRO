@@ -1,203 +1,478 @@
 /* ***********   RunsForm Start       ************** */
 
 .runs-form {
-  background-color: rgba(0, 0, 0, 0.2);
+
+  background-color: #362d2d22; /* Updated background color */
+
   padding: 20px;
+
   border-radius: 5px;
+
   margin: 0 auto;
+
   max-width: 500px;
+
   display: flex;
+
   flex-direction: column;
+
   align-items: center;
+
+  height: 55vh;
+
+  box-shadow: 0px 0px 10px rgba(16, 16, 16, 0.1);
+
 }
+
+
+
 
 .form-title {
-  color: #fff;
+
+  color: #000; /* Updated text color */
+
   font-size: 24px;
+
   margin-bottom: 20px;
+
 }
+
+
+
 
 .form-group {
+
   width: 100%;
+
   margin-bottom: 15px;
+
 }
+
+
+
 
 .label {
-  color: #fff;
+
+  color: #000; /* Updated text color */
+
   font-weight: bold;
+
 }
+
+
+
 
 .input-field {
+
   width: 100%;
+
   padding: 10px;
+
   border: none;
+
   border-radius: 5px;
+
+  background-color: #fff; /* Updated background color */
+
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+
+  outline: none;
+
+  transition: box-shadow 0.3s ease;
+
 }
+
+
+
+
+.input-field:focus {
+
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+
+}
+
+
+
 
 .button-container {
+
   display: flex;
+
   justify-content: space-between;
+
   margin-top: 20px;
+
 }
+
+
+
 
 .btn-submit,
+
 .btn-cancel {
+
   padding: 10px 20px;
+
   border: none;
+
   border-radius: 5px;
+
   cursor: pointer;
+
+  transition: background-color 0.3s ease;
+
 }
+
+
+
 
 .btn-submit {
+
   background-color: #4caf50;
+
   color: #fff;
+
 }
+
+
+
 
 .btn-submit:hover {
+
   background-color: #45a049;
+
 }
+
+
+
 
 .btn-cancel {
+
   background-color: #f44336;
+
   color: #fff;
+
 }
+
+
+
 
 .btn-cancel:hover {
+
   background-color: #d32f2f;
+
 }
 
-  
-    
+.inputTitle{
+
+  color: #1f1912; /* Updated text color */
+
+  font-size:15px;
+
+  margin-bottom: 5px;
+
+}
+
+ 
+
+   
+
+
+
 
 /* ***********   RunsForm End       ************** */
 
 
 
+
+
+
 /* ***********LoginForm Start**************** */
-.login-form-container {
+
+.login-container {
+
   display: flex;
+
   flex-direction: column;
+
   align-items: center;
+
   justify-content: center;
-  height: 70vh;
-  background-color: #f4f4f4;
+
+  height: 100vh;
+
+  background-color: #ecdedec7;
+
+  box-shadow: 0 0 10px rgba(198, 31, 31, 0.644);
+
 }
 
-.login-form-title {
+
+
+
+.login-title {
+
   text-align: center;
+
   margin-top: 50px;
-  color: #333;
+
+  color: #4c4040;
+
+  font-size: 24px;
+
 }
+
+
+
 
 .login-form {
+
   display: flex;
+
   flex-direction: column;
+
   align-items: center;
+
   width: 300px;
+
   padding: 20px;
-  border: 1px solid #ccc;
+
   border-radius: 5px;
+
   background-color: #fff;
+
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+
 }
 
-.login-form h2 {
-  font-size: 18px;
-  margin-bottom: 10px;
-}
 
-.login-form input {
+
+
+.login-input {
+
   width: 100%;
+
   padding: 10px;
+
   margin-bottom: 10px;
+
   border: 1px solid #ccc;
+
   border-radius: 5px;
+
 }
+
+
+
 
 .login-button {
+
   background-color: #4caf50;
+
   color: #fff;
+
   border: none;
+
   padding: 10px 20px;
+
   border-radius: 5px;
+
   cursor: pointer;
+
 }
 
+
+
+
 .login-button:hover {
+
   background-color: #45a049;
+
 }
+
+
+
+
+.login-error {
+
+  text-align: center;
+
+  color: red;
+
+  margin-top: 10px;
+
+}
+
+
+
+
 
 /* ***********LoginForm End**************** */
 
+
+
+
 /* ***********CheckList start**************** */
+
 .checklist-container {
+
   max-width: 600px;
+
   margin: 0 auto;
+
 }
+
+
+
 
 .checklist-question {
+
   margin-bottom: 10px;
+
 }
+
+
+
 
 .checklist-result {
+
   margin-top: 20px;
+
 }
+
+
+
 
 .checklist-result li {
+
   color: #fff;
+
   padding: 5px;
+
   margin-bottom: 5px;
+
   list-style-type: none;
+
 }
+
+
+
 
 .checklist-result .pass {
+
   background-color: #2ecc71;
+
 }
 
+
+
+
 .checklist-result .fail {
+
   background-color: #e74c3c;
+
 }
+
+
+
 
 
 .checklist-table {
+
   width: 100%;
+
   border-collapse: collapse;
+
   margin-bottom: 20px;
+
 }
+
+
+
 
 .checklist-table th,
+
 .checklist-table td {
-  border: 1px solid #ccc;
+
+  border: 1px solid #ac6969;
+
   padding: 8px;
+
   text-align: left;
+
 }
+
+
+
 
 .checklist-table th {
-  background-color: #f2f2f2;
+
+  background-color: #83c716c4;
+
 }
+
+
+
 
 .checklist-result table {
+
   width: 100%;
+
   border-collapse: collapse;
+
   margin-top: 20px;
+
 }
+
+
+
 
 .checklist-result th,
+
 .checklist-result td {
+
   border: 1px solid #ccc;
+
   padding: 8px;
+
   text-align: left;
+
 }
+
+
+
 
 .checklist-result th {
+
   background-color: #f2f2f2;
+
 }
+
+
+
 
 .checklist-result .pass {
+
   background-color: #c5e1a5;
+
 }
 
+
+
+
 .checklist-result .fail {
+
   background-color: #ef9a9a;
+
 }
+
+.TableHead{
+
+  background-color: #d32f2f;
+
+}
+
+
+
 
 /* ***********CheckList end**************** */

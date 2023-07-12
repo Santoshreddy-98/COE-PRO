@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { Table, Pagination } from 'react-bootstrap';
+import { Table, Pagination,Button } from 'react-bootstrap';
 
 const View = () => {
   const [designPaths, setDesignPaths] = useState([]);
@@ -38,7 +38,19 @@ const View = () => {
 
   return (
     <div>
-      <h2>Design Paths</h2>
+      <h2>  <span>Design Paths </span></h2>  
+      <div style={{ display: "flex", justifyContent: "flex-end" }}>
+          <Button
+            style={{ background: "#649FCC", border: "none" }}
+            onClick={() => {
+              // Handle the click event for the home button
+              // Add the necessary logic to redirect the user to the home page
+              console.log("Home button clicked");
+            }}
+          >
+            Home
+          </Button>
+        </div>
       <div className="table-responsive">
         <Table striped bordered hover>
           <thead>
