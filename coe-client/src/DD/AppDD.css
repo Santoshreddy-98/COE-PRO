@@ -12,33 +12,22 @@
 
 .TableContainer {
   position: relative;
-
   margin: 50px 70px 70px;
-
   box-shadow: 0px 35px 50px rgba(0, 0, 0, 0.2);
-
   font-family: "Josefin Sans", sans-serif;
 }
 
 .TableBody {
   border-radius: 5px;
-
   font-size: 12px;
-
   font-weight: normal;
-
   border: none;
 
   border-collapse: collapse;
-
   width: 100%;
-
   max-width: 100%;
-
   white-space: nowrap;
-
   background-color: white;
-
   border: 1px solid #1a2929;
 }
 
@@ -65,22 +54,27 @@ tr:nth-child(even) {
   background: #9edfd3;
 }
 
-.TableCustomButton {
+.TableCustomButtonFM {
   background-color: #4caf50;
-
   color: white;
-
   padding: 8px 16px;
-
   border: none;
-
   cursor: pointer;
-
   border-radius: 4px;
-
   font-size: 14px;
-
   display: inline-flex;
+}
+
+.TableCustomButton.active {
+  background-color: #4caf50;
+  color: white;
+  padding: 8px 16px;
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
+  font-size: 14px;
+  display: inline-flex;
+
 }
 
 .TableCustomButton:hover {
@@ -123,11 +117,16 @@ tr:nth-child(even) {
 }
 
 .TableCustomButton.disabled {
+  background-color: #4caf50;
+  color: white;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  font-size: 14px;
   opacity: 0.5;
-
   pointer-events: none;
-
   cursor: not-allowed;
+  display: inline-flex;
 }
 
 @media (max-width: 767px) {
@@ -200,13 +199,11 @@ tr:nth-child(even) {
 
   tr td:nth-child(odd) {
     background: #f8f8f8;
-
     border-right: 1px solid #1a2929;
   }
 
   tr td:nth-child(even) {
     background-color: #9edfd3;
-
     border-right: 1px solid #1a2929;
   }
 
