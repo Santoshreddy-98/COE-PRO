@@ -85,20 +85,28 @@ export const TableComponents = () => {
               prepareRow(row);
 
               return (
-                <tr {...row.getRowProps()}>
+               <tr {...row.getRowProps()}>
                   {row.cells.map((cell) => (
                     <td {...cell.getCellProps()}>
                       {cell.column.Header === "FM" && cell.value ? (
-                        <button className="TableCustomButton">View</button>
+                        <button className="TableCustomButtonFM">View</button>
                       ) : cell.column.Header === "FM" && !cell.value ? (
                         <button
-                          className="TableCustomButton"
+                          className="TableCustomButtonFM"
                           onClick={() => handleSetUpButtonClick(row)}
                         >
                           Set_up
                         </button>
-                      ) : cell.column.Header === "DD" ||
-                        cell.column.Header === "DA" ? (
+                      ) : cell.column.Header === "DD" ? (
+                        <button
+                          className={`TableCustomButton ${
+                            cell.value ? "active" : "disabled"
+                          }`}
+                          disabled={!cell.value}
+                        >
+                          Go <FaAngleDoubleRight />
+                        </button>
+                      ) : cell.column.Header === "DA" ? (
                         <button
                           className={`TableCustomButton ${
                             cell.value ? "active" : "disabled"
