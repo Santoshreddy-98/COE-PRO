@@ -78,3 +78,39 @@
 2023-07-15 13:10:59,907 INFO:  * Debugger PIN: 837-296-355
 2023-07-15 13:11:14,136 INFO:  * Detected change in 'C:\\Users\\7396\\Desktop\\COE-PRO\\Backend\\DD_backend.py', reloading
 2023-07-15 13:11:14,615 INFO:  * Restarting with stat
+2023-07-18 10:05:05,562 INFO: [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2023-07-18 10:05:05,562 INFO: [33mPress CTRL+C to quit[0m
+2023-07-18 10:05:05,570 INFO:  * Restarting with stat
+2023-07-18 10:05:07,310 WARNING:  * Debugger is active!
+2023-07-18 10:05:07,326 INFO:  * Debugger PIN: 837-296-355
+2023-07-18 10:05:52,243 INFO: 127.0.0.1 - - [18/Jul/2023 10:05:52] "OPTIONS /api/data HTTP/1.1" 200 -
+2023-07-18 10:05:52,251 INFO: Parser script started.
+2023-07-18 10:05:52,251 INFO: Tue Jul 18 10:05:52 2023	File: area_report.txt
+2023-07-18 10:05:52,251 INFO: Tue Jul 18 10:05:52 2023	File: file_area_report.txt
+2023-07-18 10:05:52,251 INFO: Tue Jul 18 10:05:52 2023	File: sta1_areareport.txt
+2023-07-18 10:05:52,251 INFO: Reading the file C:\Users\7396\Desktop\COE-PRO\Backend\area-reports\sta1_areareport.txt
+2023-07-18 10:05:52,267 INFO: Processed area file: C:\Users\7396\Desktop\COE-PRO\Backend\area-reports\sta1_areareport.txt
+2023-07-18 10:05:52,730 INFO: Processed area file: sta1_areareport.txt
+2023-07-18 10:05:52,730 INFO: Tue Jul 18 10:05:52 2023	File: sta_area_report.txt
+2023-07-18 10:05:52,746 INFO: End of Run
+2023-07-18 10:05:52,746 INFO: File parser instantiated with directory: C:\Users\7396\Desktop\COE-PRO\Backend
+2023-07-18 10:05:52,746 INFO: 127.0.0.1 - - [18/Jul/2023 10:05:52] "POST /api/data HTTP/1.1" 200 -
+2023-07-18 10:05:58,743 INFO: 127.0.0.1 - - [18/Jul/2023 10:05:58] "OPTIONS /api/data HTTP/1.1" 200 -
+2023-07-18 10:05:58,751 INFO: Parser script started.
+2023-07-18 10:05:58,751 INFO: Tue Jul 18 10:05:58 2023	File: area_report.txt
+2023-07-18 10:05:58,751 INFO: Tue Jul 18 10:05:58 2023	File: file_area_report.txt
+2023-07-18 10:05:58,751 INFO: Tue Jul 18 10:05:58 2023	File: sta1_areareport.txt
+2023-07-18 10:05:58,751 INFO: Tue Jul 18 10:05:58 2023	File: sta_area_report.txt
+2023-07-18 10:05:58,760 INFO: End of Run
+2023-07-18 10:05:58,760 INFO: File parser instantiated with directory: C:\Users\7396\Desktop\COE-PRO\Backend
+2023-07-18 10:05:58,760 INFO: 127.0.0.1 - - [18/Jul/2023 10:05:58] "POST /api/data HTTP/1.1" 200 -
+2023-07-18 10:15:03,294 INFO: 127.0.0.1 - - [18/Jul/2023 10:15:03] "OPTIONS /api/data HTTP/1.1" 200 -
+2023-07-18 10:15:03,294 INFO: Parser script started.
+2023-07-18 10:15:03,294 INFO: Tue Jul 18 10:15:03 2023	File: area_report.txt
+2023-07-18 10:15:03,294 INFO: Tue Jul 18 10:15:03 2023	File: file_area_report.txt
+2023-07-18 10:15:03,294 INFO: Tue Jul 18 10:15:03 2023	File: sta1_areareport.txt
+2023-07-18 10:15:03,294 INFO: Tue Jul 18 10:15:03 2023	File: sta_area_report.txt
+2023-07-18 10:15:03,302 INFO: End of Run
+2023-07-18 10:15:03,302 INFO: File parser instantiated with directory: C:\Users\7396\Desktop\COE-PRO\Backend
+2023-07-18 10:15:03,302 INFO: 127.0.0.1 - - [18/Jul/2023 10:15:03] "POST /api/data HTTP/1.1" 200 -

@@ -1,6 +1,6 @@
 from pymongo import MongoClient
 import json
-import time
+import uuid
 import logging
 
 # MongoDB connection URL
@@ -25,7 +25,7 @@ def push_to_database(result, run_name):
     """
     try:
         # Generate a unique filename with timestamp
-        filename = f"run_files/{run_name}_{int(time.time())}.json"
+        filename = f"run_files/{run_name}_{str(uuid.uuid4())}.json"
         
         # Write the parsed data to a JSON file
         with open(filename, "w") as file:
