@@ -13,6 +13,8 @@ const DirForm = () => {
   const [techDirectory, setTechDirectory] = useState('');
   const [validationResults, setValidationResults] = useState([]);
   const navigate = useNavigate();
+  const dataId = localStorage.getItem("dataId")
+  console.log(dataId)
   const navigateToInputVariables = () => {
     navigate('/InputVariables', { state: { formData: { defDirectory, lefDirectory, libDirectory, techDirectory } } });
   };
@@ -67,7 +69,7 @@ const DirForm = () => {
   
     // Send a POST request to the /save-path endpoint with the file paths in the request body
     try {
-      const response = await axios.post('http://localhost:5000/save-path', data);
+      const response = await axios.post('http://localhost:5000/api/save-path',{data,dataId});
       // If the save operation was successful, show a success message
       toast.success("path saved")
       console.log('Design saved successfully');

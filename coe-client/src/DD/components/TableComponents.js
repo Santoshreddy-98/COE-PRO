@@ -43,9 +43,9 @@ export const TableComponents = () => {
     setCurrentPage(selected);
   };
 
-  const handleSetUpButtonClick = (row) => {
+  const handleSetUpButtonClick = (row,id) => {
     const dirFormUrl = "/dirform"; // Replace with the actual URL of the dirform page
-
+    localStorage.setItem("dataId",id)
     // Pass any necessary data to the dirform page through query parameters or state
 
     const dataToPass = {
@@ -93,7 +93,7 @@ export const TableComponents = () => {
                       ) : cell.column.Header === "FM" && !cell.value ? (
                         <button
                           className="TableCustomButton"
-                          onClick={() => handleSetUpButtonClick(row)}
+                          onClick={() => handleSetUpButtonClick(row, row.original._id)}
                         >
                           Set_up
                         </button>

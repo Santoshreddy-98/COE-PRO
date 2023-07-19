@@ -5,9 +5,12 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const DesignVariable = require('./modal/FM_model/DesignVariable');
 const Design = require('./modal/FM_model/DesignModel');
-const userRouter = require('./router/userRouter');
-const addrunRouter = require('./router/AddRunRouter')
+const userRouter = require('./router/DA_router/userRouter');
+const addrunRouter = require('./router/DA_router/AddRunRouter')
+const createDesign = require('./router/DA_router/AddRunRouter')
+const createDesignVariable = require('./router/DA_router/AddRunRouter')
 const landingRouter = require('./router/DD_router/LandingRouter')
+const checklistRoutes = require('./router/DA_router/checklistRoutes')
 const app = express();
 
 const port = 5000;
@@ -42,10 +45,13 @@ app.use(bodyParser.json());
 // Routes
 
 app.use('/api', userRouter);
-app.use('/api', addrunRouter)
-app.use('/api', landingRouter)
+app.use('/api', addrunRouter);
+app.use('/api', landingRouter);
+app.use('/api', createDesign);
+app.use('/api', createDesignVariable);
+app.use('/api', checklistRoutes);
 
-//validate given directories
+// //validate given directories
 app.post('/validate-directories', (req, res) => {
   const { defDirectory, lefDirectory, libDirectory, techDirectory } = req.body;
   console.log('Request received:', req.body);
@@ -79,78 +85,79 @@ app.post('/validate-directories', (req, res) => {
   res.json(validationResults);
 });
 
-//save paths
-app.post('/save-path', async (req, res) => {
-  const { defDirectory, lefDirectory, libDirectory, techDirectory } = req.body;
+// //save paths
+// app.post('/save-path', async (req, res) => {
+//   const { defDirectory, lefDirectory, libDirectory, techDirectory } = req.body.data;
+//   const frontendDataId = req.body.dataId
+//   // Create a new design document
+//   const design = new Design({
+//     defDirectory,
+//     lefDirectory,
+//     libDirectory,
+//     techDirectory
+//   });
+//   console.log(frontendDataId, defDirectory, lefDirectory, libDirectory, techDirectory)
 
-  // Create a new design document
-  const design = new Design({
-    defDirectory,
-    lefDirectory,
-    libDirectory,
-    techDirectory
-  });
-
-  // Save the design document to the database
-  try {
-    await design.save();
-    res.status(201).json({ message: 'Design saved successfully' });
-  } catch (err) {
-    res.status(500).json({ error: err.message });
-  }
-});
+//   // Save the design document to the database
+//   try {
+//      await design.save();
+//     res.status(201).json({ message: 'Design saved successfully' });
+//   } catch (err) {
+//     res.status(500).json({ error: err.message });
+//   }
+// });
 
 
-//get paths
-app.get('/designs', async (req, res) => {
-  try {
-    // Fetch all the design documents from the database
-    const designs = await Design.find();
+// //get paths
+// app.get('/designs', async (req, res) => {
+//   try {
+//     // Fetch all the design documents from the database
+//     const designs = await Design.find();
 
-    res.json(designs);
-  } catch (err) {
-    res.status(500).json({ error: err.message });
-  }
-});
+//     res.json(designs);
+//   } catch (err) {
+//     res.status(500).json({ error: err.message });
+//   }
+// });
 
-//save variables
-app.post('/save-design-variable', async (req, res) => {
-  const { design, num_cpu, power_opt, gen_eff } = req.body;
+// //save variables
+// app.post('/save-design-variable', async (req, res) => {
+//   const { design, num_cpu, power_opt, gen_eff } = req.body;
 
-  // Create a new design variable document
-  const designVariable = new DesignVariable({
-    design,
-    num_cpu,
-    power_opt,
-    gen_eff
-  });
+//   // Create a new design variable document
+//   const designVariable = new DesignVariable({
+//     design,
+//     num_cpu,
+//     power_opt,
+//     gen_eff
+//   });
 
-  // Save the design variable document to the database
-  try {
-    await designVariable.save();
-    res.status(201).json({ message: 'Design variable saved successfully' });
-  } catch (err) {
-    res.status(500).json({ error: err.message });
-  }
-});
+//   // Save the design variable document to the database
+//   try {
+//     await designVariable.save();
+//     res.status(201).json({ message: 'Design variable saved successfully' });
+//   } catch (err) {
+//     res.status(500).json({ error: err.message });
+//   }
+// });
 
-app.get('/design-paths', async (req, res) => {
-  try {
-    const designs = await Design.find();
-    res.status(200).json(designs);
-  } catch (err) {
-    res.status(500).json({ error: err.message });
-  }
-});
+// app.get('/design-paths', async (req, res) => {
+//   try {
+//     const designs = await Design.find();
+//     res.status(200).json(designs);
+//   } catch (err) {
+//     res.status(500).json({ error: err.message });
+//   }
+// });
 
-app.get('/design-variables', async (req, res) => {
-  try {
-    const designVariables = await DesignVariable.find();
-    res.status(200).json(designVariables);
-  } catch (err) {
-    res.status(500).json({ error: err.message });
-  }
-});
+// app.get('/design-variables', async (req, res) => {
+//   try {
+//     const designVariables = await DesignVariable.find();
+//     res.status(200).json(designVariables);
+//   } catch (err) {
+//     res.status(500).json({ error: err.message });
+//   }
+// });
 
 // Start the server
 

@@ -1,18 +1,12 @@
-import React, { useState } from "react";
-
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-
 import axios from "axios";
-
 import "./DA.css";
 
 const Login = () => {
   const [username, setUsername] = useState("");
-
   const [password, setPassword] = useState("");
-
   const [error, setError] = useState("");
-
   const navigate = useNavigate();
 
   const handleUsernameChange = (e) => {
@@ -25,29 +19,32 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     try {
       const response = await axios.post("http://localhost:5000/api/login", {
         username,
         password,
       });
 
+      const { role } = response.data; // Assuming the role is present in the response data
+
       console.log(response.data); // Handle the response data as needed
 
       // Redirect to the desired page after successful login
-
-      navigate("/checklist");
+      navigate("/checklist", { state: { role } });
     } catch (error) {
       setError("Invalid username or password");
-
       console.error(error);
     }
   };
 
+  const handleForgotPassword = () => {
+    // Redirect to the password reset page
+    navigate("/PasswordReset");
+  };
+
   return (
     <div className="login-container">
-      <h2 className="login-title">PD-dev PD-Lead</h2>
-
+      <h2 className="login-title">DA Login</h2>
       <form onSubmit={handleSubmit} className="login-form">
         <input
           type="text"
@@ -56,7 +53,6 @@ const Login = () => {
           placeholder="Username"
           className="login-input"
         />
-
         <input
           type="password"
           value={password}
@@ -64,11 +60,15 @@ const Login = () => {
           placeholder="Password"
           className="login-input"
         />
-
         <button type="submit" className="login-button">
           Login
         </button>
       </form>
+
+       {/* Add the "Forgot Password" link */}
+       <button onClick={handleForgotPassword} className="forgotpassword">
+        Forgot Password
+      </button>
 
       {error && <p className="login-error">{error}</p>}
     </div>

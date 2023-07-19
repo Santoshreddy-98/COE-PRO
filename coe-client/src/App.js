@@ -6,10 +6,12 @@ import { TableComponents } from './DD/components/TableComponents';
 import CheckList from './DA/components/CheckList'
 import DirForm from './FM/components/DirForm';
 import Login from './DA/components/Login';
-import nextpage from './DA/components/nextpage'
 import InputVariables from './FM/components/InputVariables'
 import { ToastContainer } from "react-toastify";
 import View from './FM/components/View';
+import PreSynthesisReport from './DA/components/preSynthesisReport';
+import PasswordReset from './DA/components/PasswordReset';
+
 
 const App = () => {
   return (
@@ -25,6 +27,9 @@ const App = () => {
         <Route path='/nextpage' element={<nextpage />} />
         <Route path='/InputVariables' element={<InputVariables />} />
         <Route path="/view-data" element={<View/>}/>
+        <Route path="/preSynthesisReport" element={<PreSynthesisReport />} />
+        <Route path="/PasswordReset" element={<PasswordReset />} />
+       
       </Routes>
     </BrowserRouter>
   );

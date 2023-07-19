@@ -1,541 +1,325 @@
-import React, { useState } from 'react';
-
-import './DA.css';
-
-import { useTable } from 'react-table';
-
-import { toast, ToastContainer } from 'react-toastify';
-
-import 'react-toastify/dist/ReactToastify.css';
-
-
-
+import React, { useState, useEffect } from "react";
+import { useTable } from "react-table";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import questions from "./config";
+import "./DA.css";
+import { useLocation } from "react-router-dom";
+import axios from "axios";
 
 function ChecklistPage() {
+  const [answers, setAnswers] = useState({});
+  const [pdDevData, setPdDevData] = useState([]);
 
-  const [answers, setAnswers] = useState({
+  const location = useLocation();
+  const userRole = location.state?.role;
 
-    question1: false,
-
-    question2: false,
-
-    question3: false,
-
-    question4: false,
-
-    question5: false,
-
-    question6: false,
-
-    question7: false,
-
-    question8: false,
-
-    question9: false,
-
-    question10: false,
-
-  });
-
-
-
-
-  const handleCheckboxChange = (e) => {
-
-    const { name, checked } = e.target;
-
-    if (name === 'checkAll') {
-
-      setAnswers((prevAnswers) => {
-
-        const newAnswers = { ...prevAnswers };
-
-        Object.keys(newAnswers).forEach((question) => {
-
-          newAnswers[question] = checked;
-
-        });
-
-        return newAnswers;
-
-      });
-
-    } else {
-
-      setAnswers((prevAnswers) => ({
-
-        ...prevAnswers,
-
-        [name]: checked,
-
-      }));
-
-    }
-
+  const handleRadioChange = (e) => {
+    const { name, value } = e.target;
+    setAnswers((prevAnswers) => ({
+      ...prevAnswers,
+      [name]: value,
+    }));
   };
 
-
-
+  // const calculatePercentage = () => {
+  //   const totalQuestions = questions.length;
+  //   const answeredQuestions = Object.keys(answers).length;
+  //   const percentage = (answeredQuestions / totalQuestions) * 100;
+  //   return percentage.toFixed(2);
+  // };
 
   const calculatePercentage = () => {
-
-    const totalQuestions = Object.keys(answers).length;
-
-    const answeredQuestions = Object.values(answers).filter((value) => value).length;
-
-    return (answeredQuestions / totalQuestions) * 100;
-
+    const totalQuestions = data.length;
+    const answeredQuestions = Object.keys(answers).filter(
+      (key) => answers[key] === "YES"
+    ).length;
+    const percentage = (answeredQuestions / totalQuestions) * 100;
+    return percentage.toFixed(2);
   };
+  
+  
 
+  useEffect(() => {
+    if (userRole === "PD Lead") {
+      axios
+        .get("http://localhost:5000/api/checklist/pddev")
+        .then((response) => {
+          setPdDevData(response.data);
+        })
+        .catch((error) => {
+          console.error("Error fetching PD Dev data:", error);
+        });
+    }
+  }, [userRole]);
+  console.log(pdDevData);
 
+  const data = React.useMemo(() => {
+    return questions.map((question, index) => {
+      const pdDevValue = pdDevData?.pdDev?.[`pdDev${index + 1}`];
+      const pdDevCommentsValue =
+        pdDevData?.devComments?.[`devComments${index + 1}`];
 
+      const pdDevValueArray = Array.from(pdDevValue || []);
+      const pdDevValueString = pdDevValueArray.join("");
 
-  const data = React.useMemo(
+      const pdDevCommentsValueArray = Array.from(pdDevCommentsValue || []);
+      const pdDevCommentsValueString = pdDevCommentsValueArray.join("");
 
-    () => [
-
-      {
-
-        question: (
-
-          <label>
-
+      const row = {
+        question: question.text,
+        data: <button className="NAButton">NA</button>,
+        pdDev:
+          userRole === "PD Dev" ? (
+            <div>
+              <label>
+                <input
+                  type="radio"
+                  name={`pdDev${index + 1}`}
+                  value="YES"
+                  checked={answers[`pdDev${index + 1}`] === "YES"}
+                  onChange={handleRadioChange}
+                />
+                YES
+              </label>
+              <label>
+                <input
+                  type="radio"
+                  name={`pdDev${index + 1}`}
+                  value="NO"
+                  checked={answers[`pdDev${index + 1}`] === "NO"}
+                  onChange={handleRadioChange}
+                />
+                NO
+              </label>
+            </div>
+          ) : (
+            <div className="shaded-column">
+              <span>{pdDevValueString || "NA"}</span>  {/* Report is Not Available => NA */}
+            </div>
+          ),
+        devComments:
+          userRole === "PD Dev" ? (
             <input
-
-              type="checkbox"
-
-              name="question1"
-
-              checked={answers.question1}
-
-              onChange={handleCheckboxChange}
-
+              type="text"
+              value={answers[`devComments${index + 1}`] || ""}
+              name={`devComments${index + 1}`}
+              onChange={(e) => {
+                const { name, value } = e.target;
+                setAnswers((prevAnswers) => ({
+                  ...prevAnswers,
+                  [name]: value,
+                }));
+              }}
             />
-
-            Are logical and physical libraries available for all the standard cells and macros?
-
-          </label>
-
-        ),
-
-        status: answers.question1 ? 'Yes' : 'No',
-
-      },
-
-      {
-
-        question: (
-
-          <label>
-
+          ) : (
+            <div className="shaded-column">
+              <span>
+                {pdDevCommentsValueString || "NA"}
+              </span>
+            </div>
+          ),
+        pdLead:
+          userRole === "PD Dev" ? (
+            <div className="shaded-column">
+              <span>Not Accessible</span>
+            </div>
+          ) : (
+            <div>
+              <label>
+                <input
+                  type="radio"
+                  name={`pdLead${index + 1}`}
+                  value="YES"
+                  checked={answers[`pdLead${index + 1}`] === "YES"}
+                  onChange={handleRadioChange}
+                /> 
+                YES
+              </label>
+              <label>
+                <input
+                  type="radio"
+                  name={`pdLead${index + 1}`}
+                  value="NO"
+                  checked={answers[`pdLead${index + 1}`] === "NO"}
+                  onChange={handleRadioChange}
+                />
+                NO
+              </label>
+            </div>
+          ),
+        pdLeadComments:
+          userRole === "PD Dev" ? (
+            <div className="shaded-column">
+              <span>Not Accessible</span>
+            </div>
+          ) : (
             <input
-
-              type="checkbox"
-
-              name="question2"
-
-              checked={answers.question2}
-
-              onChange={handleCheckboxChange}
-
+              type="text"
+              value={answers[`pdLeadComments${index + 1}`] || ""}
+              name={`pdLeadComments${index + 1}`}
+              onChange={(e) => {
+                const { name, value } = e.target;
+                setAnswers((prevAnswers) => ({
+                  ...prevAnswers,
+                  [name]: value,
+                }));
+              }}
             />
-
-            Are latest version of libraries available?
-
-          </label>
-
-        ),
-
-        status: answers.question2 ? 'Yes' : 'No',
-
-      },
-
-
-
-
-      {
-
-        question: (
-
-          <label>
-
-            <input
-
-              type="checkbox"
-
-              name="question3"
-
-              checked={answers.question3}
-
-              onChange={handleCheckboxChange}
-
-            />
-
-            Are all the std cells and macros in the library DRC, LVS clean?
-
-          </label>
-
-        ),
-
-        status: answers.question3 ? 'Yes' : 'No',
-
-      },
-
-      {
-
-        question: (
-
-          <label>
-
-            <input
-
-              type="checkbox"
-
-              name="question4"
-
-              checked={answers.question4}
-
-              onChange={handleCheckboxChange}
-
-            />
-
-            Are Decap cell available?
-
-          </label>
-
-        ),
-
-        status: answers.question4 ? 'Yes' : 'No',
-
-      },
-
-      {
-
-        question: (
-
-          <label>
-
-            <input
-
-              type="checkbox"
-
-              name="question5"
-
-              checked={answers.question5}
-
-              onChange={handleCheckboxChange}
-
-            />
-
-            Are Tie high/low cells available?
-
-          </label>
-
-        ),
-
-        status: answers.question5 ? 'Yes' : 'No',
-
-      },
-
-      {
-
-        question: (
-
-          <label>
-
-            <input
-
-              type="checkbox"
-
-              name="question6"
-
-              checked={answers.question6}
-
-              onChange={handleCheckboxChange}
-
-            />
-
-            Are all tap cells and pitch available?
-
-          </label>
-
-        ),
-
-        status: answers.question6 ? 'Yes' : 'No',
-
-      },
-
-      {
-
-        question: (
-
-          <label>
-
-            <input
-
-              type="checkbox"
-
-              name="question7"
-
-              checked={answers.question7}
-
-              onChange={handleCheckboxChange}
-
-            />
-
-            Are endcap & corner cells available?
-
-          </label>
-
-        ),
-
-        status: answers.question7 ? 'Yes' : 'No',
-
-      },
-
-      {
-
-        question: (
-
-          <label>
-
-            <input
-
-              type="checkbox"
-
-              name="question8"
-
-              checked={answers.question8}
-
-              onChange={handleCheckboxChange}
-
-            />
-
-            Are power switches available?
-
-          </label>
-
-        ),
-
-        status: answers.question8 ? 'Yes' : 'No',
-
-      },
-
-      {
-
-        question: (
-
-          <label>
-
-            <input
-
-              type="checkbox"
-
-              name="question9"
-
-              checked={answers.question9}
-
-              onChange={handleCheckboxChange}
-
-            />
-
-            Are all the required and PVT corners for implementation available in the library?
-
-          </label>
-
-        ),
-
-        status: answers.question9 ? 'Yes' : 'No',
-
-      },
-
-      {
-
-        question: (
-
-          <label>
-
-            <input
-
-              type="checkbox"
-
-              name="question10"
-
-              checked={answers.question10}
-
-              onChange={handleCheckboxChange}
-
-            />
-
-            Are multi VT cells like HVT,LVT, and SVT available?
-
-          </label>
-
-        ),
-
-        status: answers.question10 ? 'Yes' : 'No',
-
-      },
-
-      // Add more questions and their statuses here
-
-    ],
-
-    [answers]
-
-  );
-
-
-
+          ),
+      };
+
+      return row;
+    });
+  }, [answers, userRole, pdDevData]);
 
   const columns = React.useMemo(
-
     () => [
-
       {
-
-        Header: 'Question',
-
-        accessor: 'question',
-
+        Header: "Question",
+        accessor: "question",
+        show: true,
       },
-
       {
-
-        Header: 'Status',
-
-        accessor: 'status',
-
-        Cell: ({ value }) => (
-
-          <span style={{ color: value === 'Yes' ? 'green' : 'red' }}>
-
-            {value}
-
-          </span>
-
-        ),
-
+        Header: "Data",
+        accessor: "data",
+        show: true,
       },
-
+      {
+        Header: "PD-dev",
+        accessor: "pdDev",
+        show: userRole === "PD Dev" || userRole === "PD Lead",
+      },
+      {
+        Header: "Dev-Comments",
+        accessor: "devComments",
+        show: userRole === "PD Dev" || userRole === "PD Lead",
+      },
+      {
+        Header: "PD Lead",
+        accessor: "pdLead",
+        show: true,
+      },
+      {
+        Header: "PD-Lead-Comments",
+        accessor: "pdLeadComments",
+        show: true,
+      },
     ],
-
-    []
-
+    [userRole]
   );
 
+  const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } =
+    useTable({ columns, data });
 
-
-
-
-  const {
-
-    getTableProps,
-
-    getTableBodyProps,
-
-    headerGroups,
-
-    rows,
-
-    prepareRow,
-
-  } = useTable({ columns, data });
-
-
-
-
-  const handleFormSubmit = (e) => {
-
+  const handleFormSubmit = async (e) => {
     e.preventDefault();
 
     const percentage = calculatePercentage();
+    // console.log(userRole);
+    // console.log(answers);
+    // console.log(questions);
 
-    toast.success(`Submitted! Percentage: ${percentage.toFixed(2)}%`, {
+    try {
+      const pdDevAnswers = Object.fromEntries(
+        Object.entries(answers).filter(([key]) => key.startsWith("pdDev"))
+      );
 
-      position: toast.POSITION.TOP_RIGHT,
+      const devCommentsAnswers = Object.fromEntries(
+        Object.entries(answers).filter(([key]) => key.startsWith("devComments"))
+      );
 
-    });
+      const pdLeadAnswers = Object.fromEntries(
+        Object.entries(answers).filter(([key]) => key.startsWith("pdLead"))
+      );
 
+      const pdLeadCommentsAnswers = Object.fromEntries(
+        Object.entries(answers).filter(([key]) =>
+          key.startsWith("pdLeadComments")
+        )
+      );
+
+      const requestBody = {
+        userRole,
+        answers: {
+          pdDev: pdDevAnswers,
+          devComments: devCommentsAnswers,
+          pdLead: pdLeadAnswers,
+          pdLeadComments: pdLeadCommentsAnswers,
+        },
+        questions,
+      };
+
+      await axios.post("http://localhost:5000/api/checklist", requestBody);
+
+      toast.success(`Submitted! Percentage: ${percentage}%`, {
+        position: toast.POSITION.TOP_RIGHT,
+      });
+    } catch (error) {
+      console.error("Error submitting the checklist:", error);
+      toast.error("Error submitting the checklist.", {
+        position: toast.POSITION.TOP_RIGHT,
+      });
+    }
   };
 
-
-
-
   return (
-
     <div>
+      <div>
+        <div className="checklist-left">
+          <h1>PRE-SYNTHESIS CHECKLIST</h1>
 
-      <ToastContainer />
+          <p className="user-role" style={{ textAlign: "left" }}>
+            You are: {location.state?.role}
+          </p>
 
-      <div className="checklist-left">
-
-        <h1>Checklist</h1>
-
-        <form onSubmit={handleFormSubmit}>
-
-          <table className="checklist-table" {...getTableProps()}>
-
-            <thead>
-
-              {headerGroups.map((headerGroup) => (
-
-                <tr {...headerGroup.getHeaderGroupProps()}>
-
-                  {headerGroup.headers.map((column) => (
-
-                    <th {...column.getHeaderProps()}>{column.render('Header')}</th>
-
-                  ))}
-
-                </tr>
-
-              ))}
-
-            </thead>
-
-            <tbody {...getTableBodyProps()}>
-
-              {rows.map((row) => {
-
-                prepareRow(row);
-
-                return (
-
-                  <tr {...row.getRowProps()}>
-
-                    {row.cells.map((cell) => (
-
-                      <td {...cell.getCellProps()}>{cell.render('Cell')}</td>
-
-                    ))}
-
+          <form className="checklistForm" onSubmit={handleFormSubmit}>
+            <table className="checklist-table" {...getTableProps()}>
+              <thead>
+                {headerGroups.map((headerGroup) => (
+                  <tr {...headerGroup.getHeaderGroupProps()}>
+                    {headerGroup.headers.map(
+                      (column) =>
+                        column.show && (
+                          <th {...column.getHeaderProps()}>
+                            {column.render("Header")}
+                          </th>
+                        )
+                    )}
                   </tr>
+                ))}
+              </thead>
 
-                );
+              <tbody {...getTableBodyProps()}>
+                {rows.map((row) => {
+                  prepareRow(row);
 
-              })}
+                  return (
+                    <tr {...row.getRowProps()}>
+                      {row.cells.map(
+                        (cell) =>
+                          cell.column.show && (
+                            <td {...cell.getCellProps()}>
+                              {cell.render("Cell")}
+                            </td>
+                          )
+                      )}
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
 
-            </tbody>
-
-          </table>
-
-          <button type="submit">Submit</button>
-
-        </form>
-
+            <div className="button-container">
+              <button className="submit-button" type="submit">
+                Submit
+              </button>
+            </div>
+          </form>
+        </div>
       </div>
-
-
-
-
     </div>
-
   );
-
 }
 
-
-
-
-export default ChecklistPage
+export default ChecklistPage;
