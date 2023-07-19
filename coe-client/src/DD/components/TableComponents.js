@@ -4,6 +4,8 @@ import { useTable } from "react-table";
 
 import ReactPaginate from "react-paginate";
 
+import { useNavigate } from "react-router-dom";
+
 import axios from "axios";
 
 import columns from "./Columns";
@@ -13,6 +15,8 @@ import "../AppDD.css";
 import { FaAngleDoubleRight } from "react-icons/fa";
 
 export const TableComponents = () => {
+  const navigate = useNavigate();
+
   const [colVal, setColVal] = useState([]);
 
   const maxRowsPerPage = 10;
@@ -39,11 +43,21 @@ export const TableComponents = () => {
     fetchData();
   }, []);
 
-  const handlePageChange = ({ selected }) => {
-    setCurrentPage(selected);
+  const viewDashboard = async (runName) => {
+    try {
+      const runData = await axios.post(
+        `http://127.0.0.1:5000/api/get_data_by_id/${runName}`
+      );
+
+      navigate("/viewdashboard", { state: runData.data });
+    } catch (error) {
+      console.error("Error sending data to Python Flask server:", error);
+    }
   };
 
-  const handleSetUpButtonClick = (row) => {
+  const handleSetUpButtonClick = (id) => {
+    localStorage.setItem("dataId", id);
+
     const dirFormUrl = "/dirform"; // Replace with the actual URL of the dirform page
 
     // Pass any necessary data to the dirform page through query parameters or state
@@ -59,6 +73,10 @@ export const TableComponents = () => {
     // Navigate to the dirform page
 
     window.location.href = urlWithParams;
+  };
+
+  const handlePageChange = ({ selected }) => {
+    setCurrentPage(selected);
   };
 
   const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } =
@@ -88,22 +106,34 @@ export const TableComponents = () => {
                <tr {...row.getRowProps()}>
                   {row.cells.map((cell) => (
                     <td {...cell.getCellProps()}>
-                      {cell.column.Header === "FM" && cell.value ? (
-                        <button className="TableCustomButtonFM">View</button>
-                      ) : cell.column.Header === "FM" && !cell.value ? (
-                        <button
-                          className="TableCustomButtonFM"
-                          onClick={() => handleSetUpButtonClick(row)}
-                        >
-                          Set_up
-                        </button>
+                      {cell.column.Header === "FM" ? (
+                        <span className="buttonContainer">
+                          <button
+                            className={`TableCustomButtonFM ${
+                              cell.value ? "active" : "disabled"
+                            }`}
+                          >
+                            View
+                          </button>
+
+                          <button
+                            className={`TableCustomButtonFM ${
+                              cell.value ? "disabled" : "active"
+                            }`}
+                            onClick={() =>
+                              handleSetUpButtonClick(row.original._id)
+                            }
+                          >
+                            Set_up
+                          </button>
+                        </span>
                       ) : cell.column.Header === "DD" ? (
                         <button
                           className={`TableCustomButton ${
                             cell.value ? "active" : "disabled"
                           }`}
                           disabled={!cell.value}
-                        >
+                          onClick={() => viewDashboard(row.original.runName)}>
                           Go <FaAngleDoubleRight />
                         </button>
                       ) : cell.column.Header === "DA" ? (

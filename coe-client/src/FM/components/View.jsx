@@ -1,12 +1,15 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { Table, Pagination,Button } from 'react-bootstrap';
+import "./DataDisplay.css"
 
 const View = () => {
   const [designPaths, setDesignPaths] = useState([]);
   const [designVariables, setDesignVariables] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage] = useState(15);
+  const navigate = useNavigate()
 
   useEffect(() => {
     fetchData();
@@ -36,30 +39,30 @@ const View = () => {
     setCurrentPage(pageNumber);
   };
 
+  const handleClick = () => {
+    navigate('/landing');
+  };
+
   return (
     <div>
-      <h2>  <span>Design Paths </span></h2>  
+      <h2>Design Paths</h2>  
       <div style={{ display: "flex", justifyContent: "flex-end" }}>
           <Button
-            style={{ background: "#649FCC", border: "none" }}
-            onClick={() => {
-              // Handle the click event for the home button
-              // Add the necessary logic to redirect the user to the home page
-              console.log("Home button clicked");
-            }}
+            style={{ background: "#F4770B", border: "none",marginBottom:"3px" }}
+            onClick={handleClick}
           >
-            Home
+            Dashboard
           </Button>
         </div>
       <div className="table-responsive">
         <Table striped bordered hover>
           <thead>
             <tr>
-              <th>#</th>
-              <th>defDirectory</th>
-              <th>lefDirectory</th>
-              <th>libDirectory</th>
-              <th>techDirectory</th>
+              <th id='Disth'>#</th>
+              <th id='Disth'>defDirectory</th>
+              <th id='Disth'>lefDirectory</th>
+              <th id='Disth'>libDirectory</th>
+              <th id='Disth'>techDirectory</th>
             </tr>
           </thead>
           <tbody>
@@ -81,11 +84,11 @@ const View = () => {
         <Table striped bordered hover>
           <thead>
             <tr>
-              <th>#</th>
-              <th>design</th>
-              <th>num_cpu</th>
-              <th>power_opt</th>
-              <th>gen_eff</th>
+              <th id='Disth'>#</th>
+              <th id='Disth'>design</th>
+              <th id='Disth'>num_cpu</th>
+              <th id='Disth'>power_opt</th>
+              <th id='Disth'>gen_eff</th>
             </tr>
           </thead>
           <tbody>

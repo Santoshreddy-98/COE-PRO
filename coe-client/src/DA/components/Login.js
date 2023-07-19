@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import { useNavigate } from "react-router-dom";
 
@@ -29,14 +29,17 @@ const Login = () => {
     try {
       const response = await axios.post("http://localhost:5000/api/login", {
         username,
+
         password,
       });
+
+      const { role } = response.data; // Assuming the role is present in the response data
 
       console.log(response.data); // Handle the response data as needed
 
       // Redirect to the desired page after successful login
 
-      navigate("/checklist");
+      navigate("/checklist", { state: { role } });
     } catch (error) {
       setError("Invalid username or password");
 

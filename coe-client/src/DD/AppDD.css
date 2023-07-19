@@ -54,8 +54,68 @@ tr:nth-child(even) {
   background: #9edfd3;
 }
 
-.TableCustomButtonFM {
+
+.buttonContainer {
+  display: flex;
+
+  justify-content: space-evenly;
+
+  /* gap: 10px; */
+}
+
+.TableCustomButtonFM.active {
   background-color: #4caf50;
+
+  color: white;
+
+  padding: 8px 16px;
+
+  border: none;
+
+  cursor: pointer;
+
+  border-radius: 4px;
+
+  font-size: 14px;
+
+  /* display: inline-flex; */
+}
+
+td:nth-child(4) {
+  width: 250px;
+}
+
+td:nth-child(5),
+td:nth-child(6) {
+  /* Add your custom styles for the target columns here */
+
+  width: 200px;
+}
+
+.TableCustomButtonFM.disabled {
+  background-color: #4caf50;
+
+  color: white;
+
+  padding: 8px 16px;
+
+  border: none;
+
+  border-radius: 4px;
+
+  font-size: 14px;
+
+  opacity: 0.5;
+
+  /* pointer-events: none; */
+
+  cursor: not-allowed;
+
+  /* display: inline-flex; */
+}
+
+.TableCustomButton.active {
+background-color: #4caf50;
   color: white;
   padding: 8px 16px;
   border: none;
@@ -124,7 +184,7 @@ tr:nth-child(even) {
   border-radius: 4px;
   font-size: 14px;
   opacity: 0.5;
-  pointer-events: none;
+  /* pointer-events: none; */
   cursor: not-allowed;
   display: inline-flex;
 }
@@ -212,4 +272,50 @@ tr:nth-child(even) {
 
     text-align: center;
   }
+}
+
+/************* dashboardTab/AreaTable.js CSS *************/
+
+.AreabuttonBody {
+  margin-bottom: 20px;
+}
+
+.AreabuttonBody button {
+  margin: 0 15px 0 0;
+}
+
+.selected-tab {
+  background-color: #4caf50;
+
+  color: white;
+
+  padding: 8px 16px;
+
+  border: none;
+
+  cursor: pointer;
+
+  border-radius: 4px;
+
+  font-size: 14px;
+
+  display: inline-flex;
+}
+
+.non-selected-tab {
+  background-color: #4caf50;
+
+  color: white;
+
+  padding: 8px 16px;
+
+  border: none;
+
+  border-radius: 4px;
+
+  font-size: 14px;
+
+  opacity: 0.7;
+
+  display: inline-flex;
 }

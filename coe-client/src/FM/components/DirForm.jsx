@@ -7,6 +7,7 @@ import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const DirForm = () => {
+  const dataId = localStorage.getItem("dataId");
   const [defDirectory, setDefDirectory] = useState('');
   const [lefDirectory, setLefDirectory] = useState('');
   const [libDirectory, setLibDirectory] = useState('');
@@ -67,7 +68,7 @@ const DirForm = () => {
   
     // Send a POST request to the /save-path endpoint with the file paths in the request body
     try {
-      const response = await axios.post('http://localhost:5000/save-path', data);
+      const response = await axios.post('http://localhost:5000/save-path', {data, dataId});
       // If the save operation was successful, show a success message
       toast.success("path saved")
       console.log('Design saved successfully');
@@ -82,7 +83,6 @@ const DirForm = () => {
     handleSave()
 
   }
-
   return (
     <Card className="col-7 mt-3" style={{ margin: 'auto' }}>
       <Card.Header className='display-6'>Design Directory inputs</Card.Header>
