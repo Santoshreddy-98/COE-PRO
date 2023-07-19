@@ -6,14 +6,16 @@ import { toast } from "react-toastify";
 import { useLocation, Link } from "react-router-dom";
 
 const MyForm = () => {
+  const dataId = localStorage.getItem("dataId");
   const [design, setDesign] = useState("");
-  const [numCpu, setNumCpu] = useState("");
+  const [numCpu, setNumCpu] = useState(8);
   const [powerOpt, setPowerOpt] = useState("");
   const [genEff, setGenEff] = useState("");
   const [submittedData, setSubmittedData] = useState(null);
   const [showConfirmationModal, setShowConfirmationModal] = useState(false);
   const location = useLocation();
 
+  console.log(dataId)
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -24,6 +26,8 @@ const MyForm = () => {
         return;
       }
 
+      console.log(dataId)
+
       const response = await axios.post(
         "http://localhost:5000/save-design-variable",
         {
@@ -31,6 +35,7 @@ const MyForm = () => {
           num_cpu: numCpu,
           power_opt: powerOpt,
           gen_eff: genEff,
+          data_Id:dataId
         }
       );
       toast.success("Variables added successfully!");
@@ -40,8 +45,9 @@ const MyForm = () => {
         design,
         numCpu,
         powerOpt,
-        genEff
+        genEff,
       });
+      localStorage.removeItem('dataId')
     } catch (err) {
       toast.error("Error adding variables");
       console.error(err.message);
@@ -49,17 +55,13 @@ const MyForm = () => {
   };
 
   const handleNumCpuChange = (e) => {
-    const value = e.target.value;
-    // Check if the value is a valid number
-    if (/^\d*$/.test(value)) {
-      // Parse the value as a number
-      const numValue = parseInt(value, 10);
-      // Check if the value is between 8 and 64
-      if (value === "" || (numValue >= 8 && numValue <= 64)) {
-        setNumCpu(value);
-      }
+    const value = parseInt(e.target.value, 10);
+    if (!isNaN(value) && value >= 8 && value <= 64) {
+      setNumCpu(value);
     }
   };
+  
+  
   const handleConfirmationModalClose = () => {
     setShowConfirmationModal(false);
   };
@@ -71,29 +73,49 @@ const MyForm = () => {
   };
 
   return (
-    <Card className="col-7 mt-3" style={{ margin: "auto",background:"#dbd7d7" }}>
+    <Card
+      className="col-7 mt-3"
+      style={{ margin: "auto", background: "#dbd7d7" }}
+    >
       <CardHeader>
         <Card.Title className="display-6">Design Variables</Card.Title>
       </CardHeader>
-      <Card.Body style={{ overflowY: "auto", maxHeight: "calc(100vh - 300px)" }}>
-      <div style={{ display: "flex", justifyContent: "flex-end"}}>
-    <Button
-      style={{background:"#649FCC",border:"none"}}
-      onClick={() => {
-        // Handle the click event for the home button
-        // Add the necessary logic to redirect the user to the home page
-        console.log("Home button clicked");
-      }}
-    >
-      Home
-    </Button>
-  </div>
-  <div style={{ display: "flex", justifyContent: "flex-end"}}>
-  <Link to="/view-data">
-        <button
-        style={{background:"#2B4D9D",border:"none",borderRadius:"10px",marginTop:"2px",height:"40px",color:"white"}}>View Design Data</button>
-      </Link>
-  </div>
+      <Card.Body
+        style={{ overflowY: "auto", maxHeight: "calc(100vh - 300px)" }}
+      >
+        {/* <div style={{ display: "flex", justifyContent: "flex-end" }}>
+          <Button
+            style={{ background: "#649FCC", border: "none" }}
+            onClick={() => {
+              // Handle the click event for the home button
+              // Add the necessary logic to redirect the user to the home page
+              console.log("Home button clicked");
+            }}
+          >
+            Home
+          </Button>
+        </div> */}
+        <div style={{ display: "flex", justifyContent: "flex-end" }}>
+          <Link to="/data-display">
+            <button
+              style={{
+                background: "#F45B1C",
+
+                border: "none",
+
+                borderRadius: "10px",
+
+                marginTop: "2px",
+
+                height: "40px",
+                width:"150px",
+                color: "white",
+              }}
+            >
+              View Design
+            </button>
+          </Link>
+        </div>
         <Form onSubmit={handleSubmit}>
           <Form.Group controlId="design">
             <Form.Label>Design:</Form.Label>
@@ -105,17 +127,20 @@ const MyForm = () => {
             />
           </Form.Group>
           <Form.Group controlId="numCpu">
-            <Form.Label>Number of CPUs:</Form.Label>
-            <Form.Control
-              type="number"
-              value={numCpu}
-              onChange={handleNumCpuChange}
-              placeholder="Please select a number between 8 and 64"
-              min={8}
-              max={64}
-              required
-            />
-          </Form.Group>
+      <Form.Label>Number of CPUs:</Form.Label>
+      <Form.Control
+        as="select"
+        value={numCpu}
+        onChange={handleNumCpuChange}
+        required
+      >
+        {Array.from({ length: 57 }, (_, index) => (
+          <option key={index} value={index + 8}>
+            {index + 8}
+          </option>
+        ))}
+      </Form.Control>
+    </Form.Group>
           <Form.Group controlId="powerOpt">
             <Form.Label>Power Optimization:</Form.Label>
             <Form.Control
@@ -145,7 +170,7 @@ const MyForm = () => {
           </Form.Group>
           <Button
             className="mt-3"
-            style={{ backgroundColor: "#241C5A", border: "none" }}
+            style={{ backgroundColor: "#06874A", border: "none" }}
             type="submit"
             onClick={handleSubmit}
           >
@@ -156,7 +181,12 @@ const MyForm = () => {
       {submittedData || location.state?.formData ? (
         <div className="mt-3 table-responsive">
           <h5>Submitted Data:</h5>
-          <Table striped bordered hover style={{ overflowY: "auto", maxHeight: "calc(100vh - 400px)" }} >
+          <Table
+            striped
+            bordered
+            hover
+            style={{ overflowY: "auto", maxHeight: "calc(100vh - 400px)" }}
+          >
             <thead>
               <tr>
                 <th>Field</th>
@@ -184,19 +214,28 @@ const MyForm = () => {
               {/* Display InputVariables data */}
               <tr>
                 <td>Design:</td>
-                <td>{submittedData?.design || location.state?.formData?.design}</td>
+                <td>
+                  {submittedData?.design || location.state?.formData?.design}
+                </td>
               </tr>
               <tr>
                 <td>Number of CPUs:</td>
-                <td>{submittedData?.numCpu || location.state?.formData?.numCpu}</td>
+                <td>
+                  {submittedData?.numCpu || location.state?.formData?.numCpu}
+                </td>
               </tr>
               <tr>
                 <td>Power Optimization:</td>
-                <td>{submittedData?.powerOpt || location.state?.formData?.powerOpt}</td>
+                <td>
+                  {submittedData?.powerOpt ||
+                    location.state?.formData?.powerOpt}
+                </td>
               </tr>
               <tr>
                 <td>Generation Efficiency:</td>
-                <td>{submittedData?.genEff || location.state?.formData?.genEff}</td>
+                <td>
+                  {submittedData?.genEff || location.state?.formData?.genEff}
+                </td>
               </tr>
             </tbody>
           </Table>
@@ -208,7 +247,8 @@ const MyForm = () => {
           <Modal.Title>Form Resubmission Confirmation</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          You have already submitted the form. Are you sure you want to resubmit?
+          You have already submitted the form. Are you sure you want to
+          resubmit?
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleConfirmationModalClose}>

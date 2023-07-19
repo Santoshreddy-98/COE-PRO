@@ -2,45 +2,47 @@ from flask import Flask, jsonify, request
 import logging
 from flask_cors import CORS
 from Directory_checker import FileParser
-from Model.DB_Connect import collect_data
+from Model.DB_Connect import collect_data, get_file_data, check_run_name_exists, file_read_exists
 from pymongo import MongoClient
+from bson import ObjectId
 import json
 import os
-from bson import ObjectId
-
-app = Flask(__name__)
-
-mongo_url = f"mongodb+srv://DesignAudit:DesignAudit@designaudit.161n4ok.mongodb.net/?retryWrites=true&w=majority"
-
-# Connect to MongoDB
-client = MongoClient(mongo_url)
-
-# Access the database
-db = client.get_database('COE_PARSER')
-
-# Access the collection
-collection = db['area_reports']
 
 app = Flask(__name__)
 CORS(app)  # Enable CORS for all routes
 
+
+# Custom JSON encoder to handle ObjectId serialization
+
+class CustomJSONEncoder(json.JSONEncoder):
+    def default(self, obj):
+        if isinstance(obj, ObjectId):
+            return str(obj)
+        return super().default(obj)
+
+
 @app.route('/api/data', methods=['POST'])
 def receive_data():
     if request.method == 'POST':
-        # Process the received data
+        print("server level")
         data = request.json
+        # Process the received data
         designName, runName, directory = data['designName'], data['runName'], data['directory']
-        if directory:
-            # Instantiate the FileParser object and call the main method
+        run_exist = check_run_name_exists(runName)
+        if directory and run_exist:
+            # Instantiate the DaemonScript object and call the main method
             parser = FileParser(directory, runName)
-            parser.main()
-            logging.info("File parser instantiated with directory: %s", directory)
-            response = {
-                'message': 'Data received successfully',
-            }   
-            return jsonify(response)
+            res = parser.main()
+            logging.info(
+                "File parser instantiated with directory: %s", directory)
+            return jsonify(res)
         else:
-            logging.warning("No directory path found in MongoDB.")
+            logging.warning("Run Name already exists.")
+            response = {
+                'message': 'runName already exists',
+            }
+            return jsonify(response)
+
 
 @app.route('/api/getdata', methods=['GET'])
 def get_data():
@@ -49,25 +51,51 @@ def get_data():
     print(send_data)
     return jsonify(send_data)
 
-@app.route('/api/get_data_by_id/<id>', methods=['GET'])
-def get_data_by_id(id):
-    id_value = ObjectId(id)
-    data = collection.find_one({'_id': id_value})
 
-    if data:
-        file_name = data.get('file_name')
+@app.route('/api/get_data_by_id/<string:runName>', methods=['POST'])
+def get_data_by_id(runName):
+    try:
+        data = get_file_data(runName)
+        if data:
+            # file_name = data.get('file_name')
+            json_data = json.loads(json.dumps(
+                data, cls=CustomJSONEncoder))
+            return jsonify(json_data)
+        else:
+            # If data is empty, return a message indicating no data was found
+            return jsonify({"message": "No data found for the specified runName."})
+    except Exception as e:
+        print("Error:", e)
+        return jsonify({"message": "Error occurred while fetching data."})
 
-        # Search for the file in the local directory
+
+# Use the custom JSON encoder for Flask
+app.json_encoder = CustomJSONEncoder
+
+
+@app.route('/api/read_file_byId/<string:runNameId>', methods=['GET'])
+def readFileById(runNameId):
+    try:
+        res = file_read_exists(runNameId)
+        file_name = res.get('file_name')
         if os.path.isfile(file_name):
             # Read the JSON data from the file
             with open(file_name, 'r') as file:
                 json_data = json.load(file)
 
             return jsonify(json_data)
+
         else:
-            return jsonify({'error': 'File not found.'}), 404
-    else:
-        return jsonify({'error': 'Document not found.'}), 404
+
+            return jsonify({'error': 'File not found.'})
+
+    except Exception as e:
+
+        print(e)
+
+        return jsonify({"error": e})
+
 
 if __name__ == '__main__':
+
     app.run(debug=True)
