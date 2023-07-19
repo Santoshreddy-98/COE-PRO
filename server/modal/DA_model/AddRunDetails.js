@@ -5,7 +5,7 @@ const runSchema = new mongoose.Schema({
   runName: { type: String },
   directory: { type: String },
   fm: { type: Boolean, default: false },
-  dd: { type: Boolean, default: false },
+  dd: { type: Boolean, default: false},
   da: { type: Boolean, default: false }
   // Add other fields as needed
 });

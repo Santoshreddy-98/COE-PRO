@@ -103,7 +103,7 @@ export const TableComponents = () => {
               prepareRow(row);
 
               return (
-                <tr {...row.getRowProps()}>
+               <tr {...row.getRowProps()}>
                   {row.cells.map((cell) => (
                     <td {...cell.getCellProps()}>
                       {cell.column.Header === "FM" ? (
@@ -133,8 +133,7 @@ export const TableComponents = () => {
                             cell.value ? "active" : "disabled"
                           }`}
                           disabled={!cell.value}
-                          onClick={() => viewDashboard(row.original.runName)}
-                        >
+                          onClick={() => viewDashboard(row.original.runName)}>
                           Go <FaAngleDoubleRight />
                         </button>
                       ) : cell.column.Header === "DA" ? (
