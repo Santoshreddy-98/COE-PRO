@@ -61,3 +61,105 @@
 2023-07-12 18:09:59,422 INFO:  * Restarting with stat
 2023-07-12 18:10:00,702 WARNING:  * Debugger is active!
 2023-07-12 18:10:00,710 INFO:  * Debugger PIN: 952-970-913
+2023-07-12 18:38:11,604 INFO: [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2023-07-12 18:38:11,604 INFO: [33mPress CTRL+C to quit[0m
+2023-07-12 18:38:11,604 INFO:  * Restarting with stat
+2023-07-12 18:38:17,360 WARNING:  * Debugger is active!
+2023-07-12 18:38:17,375 INFO:  * Debugger PIN: 599-469-990
+2023-07-12 18:39:38,892 INFO: 127.0.0.1 - - [12/Jul/2023 18:39:38] "OPTIONS /api/data HTTP/1.1" 200 -
+2023-07-12 18:39:38,905 INFO: Parser script started.
+2023-07-12 18:39:38,913 INFO: Wed Jul 12 18:39:38 2023	File: area_report.txt
+2023-07-12 18:39:38,913 INFO: Reading the file C:\Users\7393\Desktop\COE\COE-PRO\Backend\area_report.txt
+2023-07-12 18:39:38,913 INFO: processed are file: <_io.TextIOWrapper name='C:\\Users\\7393\\Desktop\\COE\\COE-PRO\\Backend\\area_report.txt' mode='r' encoding='cp1252'>
+2023-07-12 18:39:38,913 INFO: Parsing function called and pushed to MongoDB
+2023-07-12 18:39:39,252 INFO: Processed area file: area_report.txt
+2023-07-12 18:39:39,252 INFO: Wed Jul 12 18:39:39 2023	File: file_area_report.txt
+2023-07-12 18:39:39,295 INFO: Reading the file C:\Users\7393\Desktop\COE\COE-PRO\Backend\file_area_report.txt
+2023-07-12 18:39:39,446 INFO: processed are file: <_io.TextIOWrapper name='C:\\Users\\7393\\Desktop\\COE\\COE-PRO\\Backend\\file_area_report.txt' mode='r' encoding='cp1252'>
+2023-07-12 18:39:39,446 INFO: Parsing function called and pushed to MongoDB
+2023-07-12 18:39:40,977 INFO: Processed area file: file_area_report.txt
+2023-07-12 18:39:40,992 INFO: End of Run
+2023-07-12 18:39:40,992 INFO: File parser instantiated with directory: C:\Users\7393\Desktop\COE\COE-PRO\Backend
+2023-07-12 18:39:40,992 INFO: 127.0.0.1 - - [12/Jul/2023 18:39:40] "POST /api/data HTTP/1.1" 200 -
+2023-07-13 10:29:19,696 INFO: 127.0.0.1 - - [13/Jul/2023 10:29:19] "OPTIONS /api/data HTTP/1.1" 200 -
+2023-07-13 10:29:19,729 INFO: Parser script started.
+2023-07-13 10:29:19,731 INFO: Thu Jul 13 10:29:19 2023	File: area_report.txt
+2023-07-13 10:29:19,735 INFO: Reading the file C:\Users\7393\Desktop\COE\COE-PRO\Backend\area_report.txt
+2023-07-13 10:29:19,738 INFO: processed are file: <_io.TextIOWrapper name='C:\\Users\\7393\\Desktop\\COE\\COE-PRO\\Backend\\area_report.txt' mode='r' encoding='cp1252'>
+2023-07-13 10:29:19,739 INFO: Parsing function called and pushed to MongoDB
+2023-07-13 10:29:20,068 INFO: Processed area file: area_report.txt
+2023-07-13 10:29:20,070 INFO: Thu Jul 13 10:29:20 2023	File: file_area_report.txt
+2023-07-13 10:29:20,108 INFO: Reading the file C:\Users\7393\Desktop\COE\COE-PRO\Backend\file_area_report.txt
+2023-07-13 10:29:20,195 INFO: processed are file: <_io.TextIOWrapper name='C:\\Users\\7393\\Desktop\\COE\\COE-PRO\\Backend\\file_area_report.txt' mode='r' encoding='cp1252'>
+2023-07-13 10:29:20,198 INFO: Parsing function called and pushed to MongoDB
+2023-07-13 10:29:21,133 INFO: Processed area file: file_area_report.txt
+2023-07-13 10:29:21,137 INFO: End of Run
+2023-07-13 10:29:21,138 INFO: File parser instantiated with directory: C:\Users\7393\Desktop\COE\COE-PRO\Backend
+2023-07-13 10:29:21,139 INFO: 127.0.0.1 - - [13/Jul/2023 10:29:21] "POST /api/data HTTP/1.1" 200 -
+2023-07-13 10:31:02,675 INFO: 127.0.0.1 - - [13/Jul/2023 10:31:02] "OPTIONS /api/data HTTP/1.1" 200 -
+2023-07-13 10:31:02,682 INFO: Parser script started.
+2023-07-13 10:31:02,684 INFO: Thu Jul 13 10:31:02 2023	File: area_report.txt
+2023-07-13 10:31:02,686 INFO: Reading the file C:\Users\7393\Desktop\COE\COE-PRO\Backend\area_report.txt
+2023-07-13 10:31:02,688 INFO: processed are file: <_io.TextIOWrapper name='C:\\Users\\7393\\Desktop\\COE\\COE-PRO\\Backend\\area_report.txt' mode='r' encoding='cp1252'>
+2023-07-13 10:31:02,689 INFO: Parsing function called and pushed to MongoDB
+2023-07-13 10:31:02,754 INFO: Processed area file: area_report.txt
+2023-07-13 10:31:02,756 INFO: Thu Jul 13 10:31:02 2023	File: file_area_report.txt
+2023-07-13 10:31:02,779 INFO: Reading the file C:\Users\7393\Desktop\COE\COE-PRO\Backend\file_area_report.txt
+2023-07-13 10:31:03,006 INFO: processed are file: <_io.TextIOWrapper name='C:\\Users\\7393\\Desktop\\COE\\COE-PRO\\Backend\\file_area_report.txt' mode='r' encoding='cp1252'>
+2023-07-13 10:31:03,011 INFO: Parsing function called and pushed to MongoDB
+2023-07-13 10:31:03,893 INFO: Processed area file: file_area_report.txt
+2023-07-13 10:31:03,895 INFO: End of Run
+2023-07-13 10:31:03,897 INFO: File parser instantiated with directory: C:\Users\7393\Desktop\COE\COE-PRO\Backend
+2023-07-13 10:31:03,898 INFO: 127.0.0.1 - - [13/Jul/2023 10:31:03] "POST /api/data HTTP/1.1" 200 -
+2023-07-13 10:35:49,752 INFO: 127.0.0.1 - - [13/Jul/2023 10:35:49] "OPTIONS /api/data HTTP/1.1" 200 -
+2023-07-13 10:35:49,761 INFO: Parser script started.
+2023-07-13 10:35:49,763 INFO: Thu Jul 13 10:35:49 2023	File: area_report.txt
+2023-07-13 10:35:49,766 INFO: Reading the file C:\Users\7393\Desktop\COE\COE-PRO\Backend\area_report.txt
+2023-07-13 10:35:49,768 INFO: processed are file: <_io.TextIOWrapper name='C:\\Users\\7393\\Desktop\\COE\\COE-PRO\\Backend\\area_report.txt' mode='r' encoding='cp1252'>
+2023-07-13 10:35:49,771 INFO: Parsing function called and pushed to MongoDB
+2023-07-13 10:35:49,825 INFO: Processed area file: area_report.txt
+2023-07-13 10:35:49,828 INFO: Thu Jul 13 10:35:49 2023	File: file_area_report.txt
+2023-07-13 10:35:49,846 INFO: Reading the file C:\Users\7393\Desktop\COE\COE-PRO\Backend\file_area_report.txt
+2023-07-13 10:35:49,915 INFO: processed are file: <_io.TextIOWrapper name='C:\\Users\\7393\\Desktop\\COE\\COE-PRO\\Backend\\file_area_report.txt' mode='r' encoding='cp1252'>
+2023-07-13 10:35:49,920 INFO: Parsing function called and pushed to MongoDB
+2023-07-13 10:35:50,783 INFO: Processed area file: file_area_report.txt
+2023-07-13 10:35:50,786 INFO: End of Run
+2023-07-13 10:35:50,789 INFO: File parser instantiated with directory: C:\Users\7393\Desktop\COE\COE-PRO\Backend
+2023-07-13 10:35:50,791 INFO: 127.0.0.1 - - [13/Jul/2023 10:35:50] "POST /api/data HTTP/1.1" 200 -
+2023-07-13 10:37:19,328 INFO: 127.0.0.1 - - [13/Jul/2023 10:37:19] "OPTIONS /api/data HTTP/1.1" 200 -
+2023-07-13 10:37:19,335 INFO: Parser script started.
+2023-07-13 10:37:19,338 INFO: Thu Jul 13 10:37:19 2023	File: area_report.txt
+2023-07-13 10:37:19,341 INFO: Reading the file C:\Users\7393\Desktop\COE\COE-PRO\Backend\area_report.txt
+2023-07-13 10:37:19,343 INFO: processed are file: <_io.TextIOWrapper name='C:\\Users\\7393\\Desktop\\COE\\COE-PRO\\Backend\\area_report.txt' mode='r' encoding='cp1252'>
+2023-07-13 10:37:19,345 INFO: Parsing function called and pushed to MongoDB
+2023-07-13 10:37:19,396 INFO: Processed area file: area_report.txt
+2023-07-13 10:37:19,399 INFO: Thu Jul 13 10:37:19 2023	File: file_area_report.txt
+2023-07-13 10:37:19,417 INFO: Reading the file C:\Users\7393\Desktop\COE\COE-PRO\Backend\file_area_report.txt
+2023-07-13 10:37:19,487 INFO: processed are file: <_io.TextIOWrapper name='C:\\Users\\7393\\Desktop\\COE\\COE-PRO\\Backend\\file_area_report.txt' mode='r' encoding='cp1252'>
+2023-07-13 10:37:19,492 INFO: Parsing function called and pushed to MongoDB
+2023-07-13 10:37:20,457 INFO: Processed area file: file_area_report.txt
+2023-07-13 10:37:20,461 INFO: End of Run
+2023-07-13 10:37:20,464 INFO: File parser instantiated with directory: C:\Users\7393\Desktop\COE\COE-PRO\Backend
+2023-07-13 10:37:20,466 INFO: 127.0.0.1 - - [13/Jul/2023 10:37:20] "POST /api/data HTTP/1.1" 200 -
+2023-07-13 11:49:08,111 INFO: 127.0.0.1 - - [13/Jul/2023 11:49:08] "OPTIONS /api/data HTTP/1.1" 200 -
+2023-07-13 11:49:08,144 INFO: Parser script started.
+2023-07-13 11:49:08,147 INFO: Thu Jul 13 11:49:08 2023	File: area_report.txt
+2023-07-13 11:49:08,152 INFO: Reading the file C:\Users\7393\Desktop\COE\COE-PRO\Backend\area_report.txt
+2023-07-13 11:49:08,156 INFO: processed are file: <_io.TextIOWrapper name='C:\\Users\\7393\\Desktop\\COE\\COE-PRO\\Backend\\area_report.txt' mode='r' encoding='cp1252'>
+2023-07-13 11:49:08,160 INFO: Parsing function called and pushed to MongoDB
+2023-07-13 11:49:08,248 INFO: Processed area file: area_report.txt
+2023-07-13 11:49:08,253 INFO: Thu Jul 13 11:49:08 2023	File: file_area_report.txt
+2023-07-13 11:49:08,293 INFO: Reading the file C:\Users\7393\Desktop\COE\COE-PRO\Backend\file_area_report.txt
+2023-07-13 11:49:08,502 INFO: processed are file: <_io.TextIOWrapper name='C:\\Users\\7393\\Desktop\\COE\\COE-PRO\\Backend\\file_area_report.txt' mode='r' encoding='cp1252'>
+2023-07-13 11:49:08,511 INFO: Parsing function called and pushed to MongoDB
+2023-07-13 11:49:09,410 INFO: Processed area file: file_area_report.txt
+2023-07-13 11:49:09,414 INFO: End of Run
+2023-07-13 11:49:09,416 INFO: File parser instantiated with directory: C:\Users\7393\Desktop\COE\COE-PRO\Backend
+2023-07-13 11:49:09,419 INFO: 127.0.0.1 - - [13/Jul/2023 11:49:09] "POST /api/data HTTP/1.1" 200 -
+2023-07-19 15:27:40,462 INFO: [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2023-07-19 15:27:40,462 INFO: [33mPress CTRL+C to quit[0m
+2023-07-19 15:27:40,470 INFO:  * Restarting with stat
+2023-07-19 15:27:46,425 WARNING:  * Debugger is active!
+2023-07-19 15:27:46,425 INFO:  * Debugger PIN: 599-469-990

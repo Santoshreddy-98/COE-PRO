@@ -6,10 +6,12 @@ import { TableComponents } from './DD/components/TableComponents';
 import CheckList from './DA/components/CheckList'
 import DirForm from './FM/components/DirForm';
 import Login from './DA/components/Login';
-import nextpage from './DA/components/nextpage'
 import InputVariables from './FM/components/InputVariables'
+import DataDisplay from './FM/components/DataDisplay';
 import { ToastContainer } from "react-toastify";
 import View from './FM/components/View';
+import PreSynthesisReport from './DA/components/preSynthesisReport';
+import { AreaTable } from './DD/dashboardTable/AreaTable';
 
 const App = () => {
   return (
@@ -22,9 +24,11 @@ const App = () => {
         <Route path="/checklist" element={<CheckList />} />
         <Route path='/dirform' element={<DirForm />} />
         <Route path='/login' element={<Login />} />
-        <Route path='/nextpage' element={<nextpage />} />
         <Route path='/InputVariables' element={<InputVariables />} />
         <Route path="/view-data" element={<View/>}/>
+        <Route path='/data-display' element={<DataDisplay/>}/>
+        <Route path='/preSynthesisReport' element={<PreSynthesisReport/>} />
+        <Route path='/viewdashboard' element={<AreaTable />} />
       </Routes>
     </BrowserRouter>
   );

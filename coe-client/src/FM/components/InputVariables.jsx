@@ -6,14 +6,16 @@ import { toast } from "react-toastify";
 import { useLocation, Link } from "react-router-dom";
 
 const MyForm = () => {
+  const dataId = localStorage.getItem("dataId");
   const [design, setDesign] = useState("");
-  const [numCpu, setNumCpu] = useState("");
+  const [numCpu, setNumCpu] = useState(8);
   const [powerOpt, setPowerOpt] = useState("");
   const [genEff, setGenEff] = useState("");
   const [submittedData, setSubmittedData] = useState(null);
   const [showConfirmationModal, setShowConfirmationModal] = useState(false);
   const location = useLocation();
 
+  console.log(dataId)
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -24,6 +26,8 @@ const MyForm = () => {
         return;
       }
 
+      console.log(dataId)
+
       const response = await axios.post(
         "http://localhost:5000/save-design-variable",
         {
@@ -31,6 +35,7 @@ const MyForm = () => {
           num_cpu: numCpu,
           power_opt: powerOpt,
           gen_eff: genEff,
+          data_Id:dataId
         }
       );
       toast.success("Variables added successfully!");
@@ -42,6 +47,7 @@ const MyForm = () => {
         powerOpt,
         genEff,
       });
+      localStorage.removeItem('dataId')
     } catch (err) {
       toast.error("Error adding variables");
       console.error(err.message);
@@ -49,17 +55,13 @@ const MyForm = () => {
   };
 
   const handleNumCpuChange = (e) => {
-    const value = e.target.value;
-    // Check if the value is a valid number
-    if (/^\d*$/.test(value)) {
-      // Parse the value as a number
-      const numValue = parseInt(value, 10);
-      // Check if the value is between 8 and 64
-      if (value === "" || (numValue >= 8 && numValue <= 64)) {
-        setNumCpu(value);
-      }
+    const value = parseInt(e.target.value, 10);
+    if (!isNaN(value) && value >= 8 && value <= 64) {
+      setNumCpu(value);
     }
   };
+  
+  
   const handleConfirmationModalClose = () => {
     setShowConfirmationModal(false);
   };
@@ -94,10 +96,10 @@ const MyForm = () => {
           </Button>
         </div> */}
         <div style={{ display: "flex", justifyContent: "flex-end" }}>
-          <Link to="/view-data">
+          <Link to="/data-display">
             <button
               style={{
-                background: "#2B4D9D",
+                background: "#F45B1C",
 
                 border: "none",
 
@@ -106,13 +108,11 @@ const MyForm = () => {
                 marginTop: "2px",
 
                 height: "40px",
-
-                width: "150px",
-
+                width:"150px",
                 color: "white",
               }}
             >
-              View Design Data
+              View Design
             </button>
           </Link>
         </div>
@@ -127,17 +127,20 @@ const MyForm = () => {
             />
           </Form.Group>
           <Form.Group controlId="numCpu">
-            <Form.Label>Number of CPUs:</Form.Label>
-            <Form.Control
-              type="number"
-              value={numCpu}
-              onChange={handleNumCpuChange}
-              placeholder="Please select a number between 8 and 64"
-              min={8}
-              max={64}
-              required
-            />
-          </Form.Group>
+      <Form.Label>Number of CPUs:</Form.Label>
+      <Form.Control
+        as="select"
+        value={numCpu}
+        onChange={handleNumCpuChange}
+        required
+      >
+        {Array.from({ length: 57 }, (_, index) => (
+          <option key={index} value={index + 8}>
+            {index + 8}
+          </option>
+        ))}
+      </Form.Control>
+    </Form.Group>
           <Form.Group controlId="powerOpt">
             <Form.Label>Power Optimization:</Form.Label>
             <Form.Control
@@ -167,7 +170,7 @@ const MyForm = () => {
           </Form.Group>
           <Button
             className="mt-3"
-            style={{ backgroundColor: "#241C5A", border: "none" }}
+            style={{ backgroundColor: "#06874A", border: "none" }}
             type="submit"
             onClick={handleSubmit}
           >
